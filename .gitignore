@@ -1,0 +1,17 @@
+# Godot generated files
+.godot/
+
+# Builds
+build/
+builds/
+export/
+exports/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
