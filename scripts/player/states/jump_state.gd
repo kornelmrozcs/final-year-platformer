@@ -1,0 +1,14 @@
+extends PlayerState
+
+
+func enter(_previous_state: PlayerState) -> void:
+	print("Jump")
+	player.jump()
+
+
+func physics_update(delta: float) -> void:
+	player.apply_gravity(delta)
+	player.move_horizontal(delta)
+
+	if player.velocity.y >= 0.0:
+		state_machine.transition_to("Fall")

@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://dhkyobphalxs6"]
 
 [ext_resource type="Texture2D" uid="uid://c648hfy8x7utq" path="res://assets/sprites/player.png" id="1_8afob"]
-[ext_resource type="Script" uid="uid://bochsxcehyu5s" path="res://scripts/player_controller.gd" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://bochsxcehyu5s" path="res://scripts/player/player_controller.gd" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://dgsrumn0nhq6o" path="res://scripts/player/state_machine/player_state_machine.gd" id="2_0owmy"]
+[ext_resource type="Script" uid="uid://det7owf2wuh5s" path="res://scripts/player/states/idle_state.gd" id="3_qek5x"]
+[ext_resource type="Script" uid="uid://bifwh7p7b6fjx" path="res://scripts/player/states/run_state.gd" id="4_5gtgg"]
+[ext_resource type="Script" uid="uid://dfevquhi58t2w" path="res://scripts/player/states/jump_state.gd" id="5_h17s1"]
+[ext_resource type="Script" uid="uid://njo1xm8hwlu1" path="res://scripts/player/states/fall_state.gd" id="6_je7p5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
 radius = 2.0
@@ -9,6 +14,21 @@ height = 6.0
 
 [node name="player" type="CharacterBody2D" unique_id=390292942]
 script = ExtResource("1_dovo2")
+
+[node name="StateMachine" type="Node" parent="." unique_id=73533683]
+script = ExtResource("2_0owmy")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1066759251]
+script = ExtResource("3_qek5x")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=269593205]
+script = ExtResource("4_5gtgg")
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=390360929]
+script = ExtResource("5_h17s1")
+
+[node name="Fall" type="Node" parent="StateMachine" unique_id=1864660489]
+script = ExtResource("6_je7p5")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=434085958]
 offset = Vector2(0, -20)
