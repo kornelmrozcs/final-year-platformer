@@ -1,16 +1,16 @@
 extends CharacterBody2D
 class_name PlayerController
 
-@export var move_speed = 300.0
-@export var acceleration = 2200.0
-@export var friction = 2200.0
-@export var jump_velocity = -400.0
-@export var max_fall_speed = 700.0
+@export var move_speed: float = 256.0
+@export var horizontal_acceleration: float = 2048.0
+@export var horizontal_friction: float = 2048.0
+@export var gravity_strength: float = 512.0
+@export var max_fall_speed: float = 512.0
+@export var jump_velocity: float = -200.0
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var direction = 0.0
+var direction: float = 0.0
 
 
 func _ready() -> void:
@@ -25,18 +25,18 @@ func _physics_process(delta: float) -> void:
 
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y += gravity * delta
-		velocity.y = min(velocity.y, max_fall_speed)
+		velocity.y = move_toward(velocity.y, max_fall_speed, gravity_strength * delta)
 
 
 func move_horizontal(delta: float) -> void:
 	direction = Input.get_axis("move_left", "move_right")
 
-	var target_speed = direction * move_speed
-	var used_acceleration = acceleration
+	var target_speed: float = direction * move_speed
+	var used_acceleration: float = horizontal_acceleration
 
+	# when there is no input, use friction instead of acceleration
 	if direction == 0.0:
-		used_acceleration = friction
+		used_acceleration = horizontal_friction
 
 	velocity.x = move_toward(velocity.x, target_speed, used_acceleration * delta)
 
