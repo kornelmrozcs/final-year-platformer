@@ -13,6 +13,10 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Jump")
 		return
 
+	if player.can_wall_slide():
+		state_machine.transition_to("WallSlide")
+		return
+
 	if not player.is_on_floor():
 		return
 
