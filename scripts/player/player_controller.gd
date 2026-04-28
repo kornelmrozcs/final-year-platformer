@@ -8,9 +8,14 @@ class_name PlayerController
 @export var max_fall_speed: float = 512.0
 @export var jump_velocity: float = -200.0
 
+@export var jump_buffer_time: float = 0.15
+@export var coyote_time: float = 0.10
+
 @onready var state_machine: PlayerStateMachine = $StateMachine
 
 var direction: float = 0.0
+var jump_buffer_timer: float = 0.0
+var coyote_timer: float = 0.0
 
 
 func _ready() -> void:
@@ -19,6 +24,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_update_jump_buffer(delta)
+	_update_coyote_timer(delta)
+
 	state_machine.physics_update(delta)
 	move_and_slide()
 
@@ -34,7 +42,7 @@ func move_horizontal(delta: float) -> void:
 	var target_speed: float = direction * move_speed
 	var used_acceleration: float = horizontal_acceleration
 
-	# when there is no input, use friction instead of acceleration
+	# use friction when player stops pressing movement
 	if direction == 0.0:
 		used_acceleration = horizontal_friction
 
@@ -43,39 +51,33 @@ func move_horizontal(delta: float) -> void:
 
 func jump() -> void:
 	velocity.y = jump_velocity
+	jump_buffer_timer = 0.0
+	coyote_timer = 0.0
 
 
 func wants_jump() -> bool:
-	return Input.is_action_just_pressed("jump")
+	return jump_buffer_timer > 0.0
+
+
+func can_ground_jump() -> bool:
+	return is_on_floor() or coyote_timer > 0.0
 
 
 func has_horizontal_input() -> bool:
 	return abs(direction) > 0.01
-	# TODO / PLAN (state machine)
 
-# na razie jest jeden script z ifami, ale później to przerobić na state machine
 
-# planowane stany:
-# - idle (stoi na ziemi, brak inputu)
-# - run (ruch po ziemi)
-# - jump (idzie do góry)
-# - fall (spada)
-# - wall slide (ślizga się po ścianie)
-# - respawn (brak kontroli, reset)
+func _update_jump_buffer(delta: float) -> void:
+	# remember jump input for a short moment
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = jump_buffer_time
+	elif jump_buffer_timer > 0.0:
+		jump_buffer_timer = max(jump_buffer_timer - delta, 0.0)
 
-# pomysł:
-# każdy state osobny plik
-# np. idle_state.gd, run_state.gd itd.
 
-# player_controller będzie tylko:
-# - trzymał velocity, gravity itd.
-# - zmieniał aktualny state
-
-# później do tego podpiąć animacje zamiast robić if velocity.y < 0 itd.
-
-# dodatkowe rzeczy do dodania później:
-# - coyote time
-# - jump buffer
-# - wall jump
-# - hazards / respawn
-# - collectables
+func _update_coyote_timer(delta: float) -> void:
+	# still allow jump shortly after leaving ground
+	if is_on_floor():
+		coyote_timer = coyote_time
+	elif coyote_timer > 0.0:
+		coyote_timer = max(coyote_timer - delta, 0.0)

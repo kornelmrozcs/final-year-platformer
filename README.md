@@ -1,25 +1,44 @@
-## Development Notes
+# finalYearPlatformer
 
-I added the first test scene and a basic tilemap level. The idea for this test level is that it should eventually require all planned movement features to complete it.
+A 2D pixel platformer prototype made in Godot for my final year university project.
 
-So far, I added:
+The project focuses on responsive player movement, difficult but fair level design, hazards, collectables, death/respawn, and three playable levels with increasing difficulty.
 
-- basic player movement
-- jump
-- tilemap collision
-- player collision
-- camera follow
-- first test level layout
-- placeholder/free sprites
-- edited player colour
-- extra wall slide frame in the player sprite sheet for later use
+## Project Idea
 
-After testing, the movement already feels quite responsive in the air, and I like that the character feels fast. However, it is still very rough. The jump currently has to be pressed almost perfectly when the player touches the ground, because there is no jump buffer yet. There is also no coyote time, so falling from platforms feels unforgiving and harder to control. The jump height also feels too high at the moment.
+The game is a short skill-based platformer where the main challenge comes from movement and level mastery rather than combat or story.
 
-Next movement improvements:
+The player has to move through dangerous levels, avoid hazards, collect required items, and reach the end of each stage.
 
-- add jump buffer
-- add coyote time
-- tune jump height
-- improve falling control
-- start preparing the controller for a simple state machine
+The visual style uses simple pixel art with mostly monochrome environments and a player character that stands out from the level.
+
+## Planned Core Features
+
+- responsive player movement
+- coyote time
+- jump buffering
+- wall slide
+- wall jump
+- hazards such as spikes or dangerous surfaces
+- death and respawn
+- collectables required for level progression
+- basic player animations
+- three levels with increasing difficulty
+
+## Planned Polish Features
+
+- simple particles and movement feedback
+- audio feedback
+- basic HUD
+- death counter and/or timer
+- simple menu
+- level select
+
+## Tech Stack
+
+- Godot Engine
+- GDScript
+- VSCode
+- GitHub
+- Miro
+- Canva / Affinity
