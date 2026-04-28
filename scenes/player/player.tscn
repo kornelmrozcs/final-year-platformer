@@ -14,6 +14,7 @@ height = 6.0
 
 [node name="player" type="CharacterBody2D" unique_id=390292942]
 script = ExtResource("1_dovo2")
+horizontal_friction = 4096.0
 
 [node name="StateMachine" type="Node" parent="." unique_id=73533683]
 script = ExtResource("2_0owmy")
