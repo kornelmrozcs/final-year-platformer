@@ -1,27 +1,66 @@
 extends CharacterBody2D
 class_name PlayerController
 
+## max left/right speed
 @export var move_speed: float = 256.0
+
+## how fast player reaches max speed
 @export var horizontal_acceleration: float = 2048.0
-@export var horizontal_friction: float = 2048.0
+
+## how fast player stops after letting go
+@export var horizontal_friction: float = 4096.0
+
+## custom gravity for this controller, easier to tune than project gravity
 @export var gravity_strength: float = 512.0
+
+## stops fall speed from getting too high
 @export var max_fall_speed: float = 512.0
+
+## jump force, negative because up is -Y in Godot
 @export var jump_velocity: float = -200.0
 
+## remember jump input for a short moment before landing
 @export var jump_buffer_time: float = 0.15
+
+## still allow jump shortly after leaving ground
 @export var coyote_time: float = 0.10
 
+## fall speed while sliding on a wall
 @export var wall_slide_speed: float = 32.0
+
+## short stick to the wall when first touching it
 @export var wall_slide_stick_time: float = 0.12
+
+## stops player from sitting on the same wall forever
+@export var wall_slide_max_time: float = 0.35
+
+## keeps wall slide stable across tiny tile gaps
+@export var wall_contact_grace_time: float = 0.08
+
+## still allow wall jump shortly after leaving wall
+@export var wall_coyote_time: float = 0.10
+
+## side push when jumping away from wall
+@export var wall_jump_push: float = 256.0
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
 
 var direction: float = 0.0
+
 var jump_buffer_timer: float = 0.0
 var coyote_timer: float = 0.0
+
+var wall_coyote_timer: float = 0.0
 var wall_slide_stick_timer: float = 0.0
-var is_touching_jumpable_wall: bool = false
+var wall_slide_timer: float = 0.0
+var wall_contact_gap_timer: float = 0.0
+
 var last_wall_normal: Vector2 = Vector2.ZERO
+var tracked_wall_side: int = 0
+
+var is_touching_jumpable_wall: bool = false
+var wall_slide_exhausted: bool = false
+var was_touching_jumpable_wall: bool = false
 
 
 func _ready() -> void:
@@ -62,6 +101,15 @@ func jump() -> void:
 	coyote_timer = 0.0
 
 
+func wall_jump() -> void:
+	velocity.y = jump_velocity
+	velocity.x = last_wall_normal.x * wall_jump_push
+
+	jump_buffer_timer = 0.0
+	coyote_timer = 0.0
+	_clear_wall_state()
+
+
 func wants_jump() -> bool:
 	return jump_buffer_timer > 0.0
 
@@ -70,8 +118,38 @@ func can_ground_jump() -> bool:
 	return is_on_floor() or coyote_timer > 0.0
 
 
+func can_wall_jump() -> bool:
+	return (
+		not is_on_floor()
+		and abs(last_wall_normal.x) > 0.9
+		and (is_touching_jumpable_wall or wall_coyote_timer > 0.0)
+	)
+
+
 func has_horizontal_input() -> bool:
 	return abs(direction) > 0.01
+
+
+func apply_wall_slide(delta: float) -> void:
+	wall_slide_timer += delta
+
+	# stop player staying on one wall forever
+	if wall_slide_timer >= wall_slide_max_time:
+		wall_slide_stick_timer = 0.0
+		wall_slide_exhausted = true
+		return
+
+	# small cling when first landing on a wall
+	if wall_slide_stick_timer > 0.0:
+		wall_slide_stick_timer = max(wall_slide_stick_timer - delta, 0.0)
+		velocity.y = 0.0
+		return
+
+	velocity.y = min(velocity.y, wall_slide_speed)
+
+
+func can_wall_slide() -> bool:
+	return is_touching_jumpable_wall and not is_on_floor() and velocity.y >= 0.0
 
 
 func _update_jump_buffer(delta: float) -> void:
@@ -89,36 +167,80 @@ func _update_coyote_timer(delta: float) -> void:
 	elif coyote_timer > 0.0:
 		coyote_timer = max(coyote_timer - delta, 0.0)
 
-func apply_wall_slide(delta: float) -> void:
-	# short cling first, then slow slide down the wall
-	if wall_slide_stick_timer > 0.0:
-		wall_slide_stick_timer = max(wall_slide_stick_timer - delta, 0.0)
-		velocity.y = 0.0
-		return
 
-	velocity.y = min(velocity.y, wall_slide_speed)
+func _update_wall_state(delta: float) -> void:
+	var raw_touching_wall: bool = _is_touching_side_wall()
+	var raw_wall_normal: Vector2 = Vector2.ZERO
+	var raw_wall_side: int = 0
+	var had_recent_same_wall: bool = false
 
+	if raw_touching_wall:
+		raw_wall_normal = get_wall_normal()
+		raw_wall_side = _get_wall_side(raw_wall_normal)
 
-func can_wall_slide() -> bool:
-	return is_touching_jumpable_wall and not is_on_floor() and velocity.y >= 0.0
+		# keeps wall slide stable across tiny tile gaps
+		had_recent_same_wall = (
+			raw_wall_side != 0
+			and raw_wall_side == tracked_wall_side
+			and wall_contact_gap_timer > 0.0
+			and wall_contact_gap_timer <= wall_contact_grace_time
+		)
 
+	_update_wall_session(delta, raw_touching_wall, raw_wall_side)
+	is_touching_jumpable_wall = raw_touching_wall and not wall_slide_exhausted
 
-func _update_wall_state(_delta: float) -> void:
-	var was_touching_wall: bool = is_touching_jumpable_wall
-	is_touching_jumpable_wall = _is_touching_side_wall()
+	if is_touching_jumpable_wall:
+		last_wall_normal = raw_wall_normal
+		wall_coyote_timer = wall_coyote_time
+
+		# only start cling on new wall contact
+		if _should_start_wall_cling(had_recent_same_wall):
+			wall_slide_stick_timer = wall_slide_stick_time
+			wall_slide_timer = 0.0
+	else:
+		wall_coyote_timer = max(wall_coyote_timer - delta, 0.0)
+		wall_slide_stick_timer = 0.0
+
+		if wall_coyote_timer <= 0.0:
+			last_wall_normal = Vector2.ZERO
 
 	if is_on_floor():
 		_clear_wall_state()
+
+	was_touching_jumpable_wall = is_touching_jumpable_wall
+
+
+func _update_wall_session(delta: float, raw_touching_wall: bool, raw_wall_side: int) -> void:
+	if raw_touching_wall:
+		# reset wall session if player changes side
+		if raw_wall_side != 0 and raw_wall_side != tracked_wall_side:
+			wall_slide_timer = 0.0
+			wall_slide_stick_timer = 0.0
+			wall_slide_exhausted = false
+
+		tracked_wall_side = raw_wall_side
+		wall_contact_gap_timer = 0.0
 		return
 
-	if is_touching_jumpable_wall:
-		last_wall_normal = get_wall_normal()
+	if tracked_wall_side == 0:
+		return
 
-		# only start cling when first touching the wall
-		if not was_touching_wall and velocity.y >= 0.0:
-			wall_slide_stick_timer = wall_slide_stick_time
-	else:
-		_clear_wall_state()
+	wall_contact_gap_timer += delta
+
+	if wall_contact_gap_timer > wall_contact_grace_time:
+		wall_slide_timer = 0.0
+		wall_slide_stick_timer = 0.0
+		wall_slide_exhausted = false
+		tracked_wall_side = 0
+
+
+func _should_start_wall_cling(had_recent_same_wall: bool) -> bool:
+	return (
+		not wall_slide_exhausted
+		and not was_touching_jumpable_wall
+		and not had_recent_same_wall
+		and velocity.y >= 0.0
+	)
 
 
 func _is_touching_side_wall() -> bool:
@@ -131,7 +253,19 @@ func _is_touching_side_wall() -> bool:
 	return abs(get_wall_normal().x) > 0.9
 
 
+func _get_wall_side(wall_normal: Vector2) -> int:
+	return int(sign(wall_normal.x))
+
+
 func _clear_wall_state() -> void:
+	wall_coyote_timer = 0.0
 	wall_slide_stick_timer = 0.0
-	is_touching_jumpable_wall = false
+	wall_slide_timer = 0.0
+	wall_contact_gap_timer = 0.0
+
 	last_wall_normal = Vector2.ZERO
+	tracked_wall_side = 0
+
+	is_touching_jumpable_wall = false
+	wall_slide_exhausted = false
+	was_touching_jumpable_wall = false

@@ -9,6 +9,10 @@ func physics_update(delta: float) -> void:
 	player.apply_gravity(delta)
 	player.move_horizontal(delta)
 
+	if player.wants_jump() and player.can_wall_jump():
+		state_machine.transition_to("Jump")
+		return
+
 	if player.wants_jump() and player.can_ground_jump():
 		state_machine.transition_to("Jump")
 		return

@@ -3,7 +3,11 @@ extends PlayerState
 
 func enter(_previous_state: PlayerState) -> void:
 	print("Jump")
-	player.jump()
+
+	if player.can_wall_jump():
+		player.wall_jump()
+	else:
+		player.jump()
 
 
 func physics_update(delta: float) -> void:

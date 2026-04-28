@@ -10,6 +10,10 @@ func physics_update(delta: float) -> void:
 	player.apply_wall_slide(delta)
 	player.move_horizontal(delta)
 
+	if player.wants_jump() and player.can_wall_jump():
+		state_machine.transition_to("Jump")
+		return
+
 	if player.is_on_floor():
 		if player.has_horizontal_input():
 			state_machine.transition_to("Run")
