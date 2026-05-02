@@ -97,3 +97,26 @@ The game could play a warning sound or show a small visual effect when the playe
 ## Decision
 
 add a visible hazard layer
+
+# Water Notes
+
+## Current Purpose
+
+The water is currently used as a visual feedback object, not as the main death system
+
+The player still dies through the FallDeath area. Water only reacts visually when the player enters it. This keeps the respawn logic separate from the water effect, which makes the system easier to reuse later.
+
+## Why Water Is Separate From FallDeath
+
+Water is a reusable scene. It can be used under the level as a death area visual, but it could also be used later as decoration or as a different type of hazard.
+
+FallDeath only has one job:
+
+- detect when the player has fallen out of the playable area
+- request respawn
+
+Water has a different job:
+
+- detect when the player enters the water
+- create a splash / visual reaction
+- later play a splash sound
