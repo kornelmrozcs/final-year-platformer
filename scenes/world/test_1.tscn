@@ -316,6 +316,12 @@ respawn_position = Vector2(3, 704)
 position = Vector2(-34, 750)
 
 [node name="Water" parent="." unique_id=45972592 instance=ExtResource("4_cmob5")]
-position = Vector2(367, 714)
-surface_line_width = 6.0
-splash_cooldown_time = 0.05
+position = Vector2(365, 710)
+water_width = 784.0
+segment_count = 256
+water_physics_speed = 24.0
+
+[node name="Water2" parent="." unique_id=1614278532 instance=ExtResource("4_cmob5")]
+position = Vector2(93, 691)
+water_width = 70.0
+water_height = 16.0
