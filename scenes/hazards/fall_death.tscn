@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://t3mi0fv2tfft"]
+
+[ext_resource type="Script" uid="uid://btpjryc1weewp" path="res://scripts/hazards/fall_death.gd" id="1_52ymw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jqyhg"]
+
+[node name="FallDeath" type="Area2D" unique_id=994417546]
+script = ExtResource("1_52ymw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178600236]
+shape = SubResource("WorldBoundaryShape2D_jqyhg")

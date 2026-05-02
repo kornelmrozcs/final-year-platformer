@@ -8,12 +8,13 @@
 [ext_resource type="Script" uid="uid://dfevquhi58t2w" path="res://scripts/player/states/jump_state.gd" id="5_h17s1"]
 [ext_resource type="Script" uid="uid://njo1xm8hwlu1" path="res://scripts/player/states/fall_state.gd" id="6_je7p5"]
 [ext_resource type="Script" uid="uid://dyusupvrutyf" path="res://scripts/player/states/wall_slide_state.gd" id="7_qek5x"]
+[ext_resource type="Script" uid="uid://d1u3w1yv5btqo" path="res://scripts/player/states/respawn_state.gd" id="8_5gtgg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
 radius = 2.0
 height = 6.0
 
-[node name="player" type="CharacterBody2D" unique_id=390292942]
+[node name="player" type="CharacterBody2D" unique_id=390292942 groups=["player"]]
 script = ExtResource("1_dovo2")
 wall_coyote_time = 0.5
 
@@ -34,6 +35,9 @@ script = ExtResource("6_je7p5")
 
 [node name="WallSlide" type="Node" parent="StateMachine" unique_id=1773369979]
 script = ExtResource("7_qek5x")
+
+[node name="Respawn" type="Node" parent="StateMachine" unique_id=288113964]
+script = ExtResource("8_5gtgg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=434085958]
 offset = Vector2(0, -20)

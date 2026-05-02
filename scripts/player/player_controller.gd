@@ -43,7 +43,17 @@ class_name PlayerController
 ## side push when jumping away from wall
 @export var wall_jump_push: float = 256.0
 
+## place where the player comes back after dying
+@export var respawn_position: Vector2 = Vector2(26, 706)
+
+## short wait before player appears again
+@export var respawn_delay: float = 0.5
+
+## small safety time after respawn
+@export var respawn_recover_time: float = 0.15
+
 @onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 var direction: float = 0.0
 
@@ -62,6 +72,7 @@ var is_touching_jumpable_wall: bool = false
 var wall_slide_exhausted: bool = false
 var was_touching_jumpable_wall: bool = false
 
+var is_respawning: bool = false
 
 func _ready() -> void:
 	add_to_group("player")
@@ -69,6 +80,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_respawning:
+		state_machine.physics_update(delta)
+		return
+
 	_update_jump_buffer(delta)
 	_update_coyote_timer(delta)
 	_update_wall_state(delta)
@@ -269,3 +284,35 @@ func _clear_wall_state() -> void:
 	is_touching_jumpable_wall = false
 	wall_slide_exhausted = false
 	was_touching_jumpable_wall = false
+
+func request_respawn() -> void:
+	if is_respawning:
+		return
+
+	state_machine.transition_to("Respawn")
+
+
+func start_respawn() -> void:
+	is_respawning = true
+	_reset_movement_state()
+
+	# hide player during respawn
+	visible = false
+
+	# safer than changing collision during physics callback
+	collision_shape.set_deferred("disabled", true)
+
+
+func finish_respawn() -> void:
+	# show player again after position reset
+	visible = true
+	collision_shape.set_deferred("disabled", false)
+
+
+func _reset_movement_state() -> void:
+	velocity = Vector2.ZERO
+
+	jump_buffer_timer = 0.0
+	coyote_timer = 0.0
+
+	_clear_wall_state()
