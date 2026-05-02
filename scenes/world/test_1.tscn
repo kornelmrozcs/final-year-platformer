@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bnn8jl0srs5k5" path="res://assets/tilemaps/free_tiles.png" id="1_vtn4t"]
 [ext_resource type="PackedScene" uid="uid://dhkyobphalxs6" path="res://scenes/player/player.tscn" id="2_v4y73"]
 [ext_resource type="PackedScene" uid="uid://t3mi0fv2tfft" path="res://scenes/hazards/fall_death.tscn" id="3_5ttxa"]
+[ext_resource type="PackedScene" uid="uid://ceamoimb7xsef" path="res://scenes/hazards/water.tscn" id="4_cmob5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4y73"]
 texture = ExtResource("1_vtn4t")
@@ -311,4 +312,13 @@ position = Vector2(3, 704)
 respawn_position = Vector2(3, 704)
 
 [node name="FallDeath" parent="." unique_id=749313850 instance=ExtResource("3_5ttxa")]
-position = Vector2(2, 748)
+position = Vector2(-34, 750)
+
+[node name="Water" parent="." unique_id=45972592 instance=ExtResource("4_cmob5")]
+position = Vector2(368, 714)
+water_size = Vector2(2000, 96)
+
+[node name="Water2" parent="." unique_id=1709530952 instance=ExtResource("4_cmob5")]
+z_index = -1
+position = Vector2(-33, 713)
+water_size = Vector2(40, 96)

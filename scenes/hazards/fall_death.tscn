@@ -9,3 +9,7 @@ script = ExtResource("1_52ymw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178600236]
 shape = SubResource("WorldBoundaryShape2D_jqyhg")
+
+[node name="Visual" type="Node2D" parent="." unique_id=2108469569]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=1536904445]
