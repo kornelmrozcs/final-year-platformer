@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cmit10k6q4dl2"]
+
+[ext_resource type="PackedScene" uid="uid://ha22espfmwr7" path="res://scenes/world/level_template.tscn" id="1_syynt"]
+
+[node name="Level2" unique_id=2127040796 instance=ExtResource("1_syynt")]
+
+[node name="Portal" parent="." index="4" unique_id=266919062]
+position = Vector2(348, 692)
+next_scene_path = ""

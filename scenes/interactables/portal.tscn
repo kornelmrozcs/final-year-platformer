@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ypefq5svn5u7"]
+
+[ext_resource type="Script" uid="uid://u8yymidhwpxy" path="res://scripts/interactables/portal.gd" id="1_suroe"]
+[ext_resource type="Texture2D" uid="uid://iptal7rnjyku" path="res://assets/sprites/portal.png" id="1_v12y3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_suroe"]
+radius = 7.0
+
+[node name="Portal" type="Area2D" unique_id=266919062]
+z_index = -2
+script = ExtResource("1_suroe")
+next_scene_path = "uid://cmit10k6q4dl2"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1597394357]
+texture = ExtResource("1_v12y3")
+region_enabled = true
+region_rect = Rect2(21.880669, 0, 22.119331, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1069535933]
+shape = SubResource("CircleShape2D_suroe")

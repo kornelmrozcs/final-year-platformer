@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="final-year-platformer"
-run/main_scene="uid://bd3hkndv5kakq"
+run/main_scene="uid://barinevhvak4i"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
