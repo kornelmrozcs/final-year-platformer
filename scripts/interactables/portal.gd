@@ -1,8 +1,8 @@
 extends Area2D
 class_name Portal
 
+signal player_entered_portal
 
-@export_file("*.tscn") var next_scene_path: String = ""
 @export var starts_open: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -38,6 +38,7 @@ func open(play_sound: bool = true) -> void:
 
 func close() -> void:
 	is_open = false
+	is_used = false
 	sprite.region_rect = closed_region
 
 
@@ -51,13 +52,5 @@ func _on_body_entered(body: Node) -> void:
 	if not is_open:
 		return
 
-	if next_scene_path.is_empty():
-		push_warning("Portal has no next scene set.")
-		return
-
 	is_used = true
-	call_deferred("_change_scene")
-
-
-func _change_scene() -> void:
-	get_tree().change_scene_to_file(next_scene_path)
+	player_entered_portal.emit()

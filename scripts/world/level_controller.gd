@@ -3,6 +3,7 @@ class_name LevelController
 
 
 @export var portal_path: NodePath = NodePath("Portal")
+@export_file("*.tscn") var next_scene_path: String = ""
 
 @onready var portal: Portal = get_node_or_null(portal_path) as Portal
 
@@ -11,6 +12,7 @@ var collected_count: int = 0
 
 
 func _ready() -> void:
+	_setup_portal()
 	_setup_collectables()
 
 	if portal == null:
@@ -21,6 +23,14 @@ func _ready() -> void:
 		portal.open(false)
 	else:
 		portal.close()
+
+
+func _setup_portal() -> void:
+	if portal == null:
+		return
+
+	if not portal.player_entered_portal.is_connected(_on_player_entered_portal):
+		portal.player_entered_portal.connect(_on_player_entered_portal)
 
 
 func _setup_collectables() -> void:
@@ -55,3 +65,15 @@ func _open_portal() -> void:
 		return
 
 	portal.open()
+
+
+func _on_player_entered_portal() -> void:
+	if next_scene_path.is_empty():
+		push_warning("Level has no next scene set.")
+		return
+
+	call_deferred("_change_scene")
+
+
+func _change_scene() -> void:
+	get_tree().change_scene_to_file(next_scene_path)
