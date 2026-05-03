@@ -66,6 +66,7 @@ class_name Water
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var surface_line: Line2D = $Line2D
 @onready var fill_polygon: Polygon2D = $Polygon2D
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var segment_data: Array = []
 var recently_splashed: bool = false
@@ -222,7 +223,7 @@ func splash(splash_pos: Vector2, splash_velocity: float) -> void:
 
 	segment_data[index]["velocity"] = splash_velocity
 	recently_splashed = true
-
+	audio_player.play()
 	set_process(true)
 
 

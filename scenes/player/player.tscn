@@ -14,7 +14,7 @@
 radius = 2.0
 height = 6.0
 
-[node name="player" type="CharacterBody2D" unique_id=390292942 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=390292942 groups=["player"]]
 script = ExtResource("1_dovo2")
 wall_coyote_time = 0.5
 

@@ -1,4 +1,7 @@
 extends Area2D
+class_name Collectable
+
+signal collected(collectable: Collectable)
 
 ## Lowest random pitch for the pickup sound.
 @export var min_pitch_scale: float = 0.95
@@ -18,8 +21,8 @@ func _ready() -> void:
 	# random seed for slightly different pickup pitch each time
 	rng.randomize()
 
-	# connect signal in code so it does not need to be wired manually in the editor
-	body_entered.connect(_on_body_entered)
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 
 
 func _on_body_entered(body: Node) -> void:
@@ -36,6 +39,7 @@ func _on_body_entered(body: Node) -> void:
 
 func _collect() -> void:
 	is_collected = true
+	collected.emit(self)
 
 	# disable collision safely after physics query flush
 	collision_shape.set_deferred("disabled", true)

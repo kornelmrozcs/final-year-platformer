@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ha22espfmwr7" path="res://scenes/world/level_template.tscn" id="1_pq706"]
 [ext_resource type="PackedScene" uid="uid://ceamoimb7xsef" path="res://scenes/hazards/water.tscn" id="2_5ebu0"]
+[ext_resource type="PackedScene" uid="uid://ci5p2na6aqoqh" path="res://scenes/interactables/collectable.tscn" id="3_638m0"]
 
 [node name="Level1" unique_id=2127040796 instance=ExtResource("1_pq706")]
 
@@ -15,5 +16,14 @@ water_width = 66.0
 [node name="Portal" parent="." index="5" unique_id=266919062]
 position = Vector2(734, 481)
 
-[node name="Collectable" parent="." index="6" unique_id=2097911153]
+[node name="Collectable" parent="Collectables" parent_id_path=PackedInt32Array(1676786546) index="0" unique_id=2097911153]
 position = Vector2(167, 649)
+
+[node name="Collectable2" parent="Collectables" parent_id_path=PackedInt32Array(1676786546) index="1" unique_id=831838801 instance=ExtResource("3_638m0")]
+position = Vector2(283, 632)
+
+[node name="Collectable3" parent="Collectables" parent_id_path=PackedInt32Array(1676786546) index="2" unique_id=259232508 instance=ExtResource("3_638m0")]
+position = Vector2(424, 568)
+
+[node name="Collectable4" parent="Collectables" parent_id_path=PackedInt32Array(1676786546) index="3" unique_id=1374366030 instance=ExtResource("3_638m0")]
+position = Vector2(621, 485.99997)
