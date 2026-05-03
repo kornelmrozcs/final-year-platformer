@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://t3mi0fv2tfft" path="res://scenes/hazards/fall_death.tscn" id="3_78oux"]
 [ext_resource type="PackedScene" uid="uid://ceamoimb7xsef" path="res://scenes/hazards/water.tscn" id="4_o4wlu"]
 [ext_resource type="PackedScene" uid="uid://ypefq5svn5u7" path="res://scenes/interactables/portal.tscn" id="5_21vdc"]
+[ext_resource type="PackedScene" uid="uid://ci5p2na6aqoqh" path="res://scenes/interactables/collectable.tscn" id="6_78oux"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4y73"]
 texture = ExtResource("1_p8h2d")
@@ -328,3 +329,6 @@ wave_spread_updates = 16
 
 [node name="Portal" parent="." unique_id=266919062 instance=ExtResource("5_21vdc")]
 position = Vector2(348, 688)
+
+[node name="Collectable" parent="." unique_id=2097911153 instance=ExtResource("6_78oux")]
+position = Vector2(311, 699)

@@ -14,3 +14,6 @@ water_width = 66.0
 
 [node name="Portal" parent="." index="5" unique_id=266919062]
 position = Vector2(734, 481)
+
+[node name="Collectable" parent="." index="6" unique_id=2097911153]
+position = Vector2(167, 649)

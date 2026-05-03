@@ -14,7 +14,7 @@ next_scene_path = "uid://cmit10k6q4dl2"
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1597394357]
 texture = ExtResource("1_v12y3")
 region_enabled = true
-region_rect = Rect2(21.880669, 0, 22.119331, 22)
+region_rect = Rect2(0, 0, 22, 22)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1069535933]
 shape = SubResource("CircleShape2D_suroe")
