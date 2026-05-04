@@ -3,9 +3,10 @@ extends PlayerState
 
 func enter(_previous_state: PlayerState) -> void:
 	print("WallSlide")
-
+	player.animation_controller.play("WallSlide")
 
 func physics_update(delta: float) -> void:
+	player.animation_controller.update_wall_slide_facing()
 	player.apply_gravity(delta)
 	player.apply_wall_slide(delta)
 	player.move_horizontal(delta)

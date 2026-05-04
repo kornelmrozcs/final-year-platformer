@@ -54,6 +54,7 @@ class_name PlayerController
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var animation_controller: PlayerAnimationController = $PlayerAnimation
 
 var direction: float = 0.0
 

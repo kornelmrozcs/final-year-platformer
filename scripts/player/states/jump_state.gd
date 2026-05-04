@@ -3,6 +3,7 @@ extends PlayerState
 
 func enter(_previous_state: PlayerState) -> void:
 	print("Jump")
+	player.animation_controller.play("Jump")
 
 	if player.can_wall_jump():
 		player.wall_jump()
@@ -11,6 +12,7 @@ func enter(_previous_state: PlayerState) -> void:
 
 
 func physics_update(delta: float) -> void:
+	player.animation_controller.update_standard_facing()
 	player.apply_gravity(delta)
 	player.move_horizontal(delta)
 

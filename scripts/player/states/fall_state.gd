@@ -3,9 +3,11 @@ extends PlayerState
 
 func enter(_previous_state: PlayerState) -> void:
 	print("Fall")
+	player.animation_controller.play("Fall")
 
 
 func physics_update(delta: float) -> void:
+	player.animation_controller.update_standard_facing()
 	player.apply_gravity(delta)
 	player.move_horizontal(delta)
 
