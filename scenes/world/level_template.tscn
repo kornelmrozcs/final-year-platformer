@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ct05b2gxaqi07" path="res://scripts/world/level_controller.gd" id="1_o4wlu"]
 [ext_resource type="Texture2D" uid="uid://bnn8jl0srs5k5" path="res://assets/tilemaps/free_tiles.png" id="1_p8h2d"]
 [ext_resource type="PackedScene" uid="uid://dhkyobphalxs6" path="res://scenes/player/player.tscn" id="2_21vdc"]
+[ext_resource type="PackedScene" uid="uid://cxsf5siikdsid" path="res://scenes/world/parallax_background.tscn" id="2_brod4"]
 [ext_resource type="PackedScene" uid="uid://t3mi0fv2tfft" path="res://scenes/hazards/fall_death.tscn" id="3_78oux"]
 [ext_resource type="PackedScene" uid="uid://ceamoimb7xsef" path="res://scenes/hazards/water.tscn" id="4_o4wlu"]
 [ext_resource type="PackedScene" uid="uid://ypefq5svn5u7" path="res://scenes/interactables/portal.tscn" id="5_21vdc"]
@@ -305,6 +306,9 @@ sources/0 = SubResource("TileSetAtlasSource_v4y73")
 
 [node name="Level Template" type="Node2D" unique_id=2127040796]
 script = ExtResource("1_o4wlu")
+
+[node name="ParallaxBackground" parent="." unique_id=259016423 instance=ExtResource("2_brod4")]
+position = Vector2(435, 346)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=864935402]
 z_index = 1
