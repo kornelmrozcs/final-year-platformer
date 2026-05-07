@@ -10,7 +10,6 @@ radius = 7.0
 [node name="Portal" type="Area2D" unique_id=266919062]
 z_index = -2
 script = ExtResource("1_suroe")
-next_scene_path = "uid://cmit10k6q4dl2"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1597394357]
 texture = ExtResource("1_v12y3")

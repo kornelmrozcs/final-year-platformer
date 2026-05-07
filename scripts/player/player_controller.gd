@@ -52,6 +52,9 @@ class_name PlayerController
 ## small safety time after respawn
 @export var respawn_recover_time: float = 0.15
 
+## tilemaps and objects in this group can kill the player
+@export var hazard_group_name: StringName = &"hazard"
+
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_controller: PlayerAnimationController = $PlayerAnimation
@@ -91,6 +94,7 @@ func _physics_process(delta: float) -> void:
 
 	state_machine.physics_update(delta)
 	move_and_slide()
+	_check_hazard_collisions()
 
 
 func apply_gravity(delta: float) -> void:
@@ -286,6 +290,22 @@ func _clear_wall_state() -> void:
 	wall_slide_exhausted = false
 	was_touching_jumpable_wall = false
 
+func _check_hazard_collisions() -> void:
+	if is_respawning:
+		return
+
+	for i in range(get_slide_collision_count()):
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		var collider := collision.get_collider()
+
+		if collider == null:
+			continue
+
+		# solid hazard tiles use this group
+		if collider is Node and collider.is_in_group(hazard_group_name):
+			request_respawn()
+			return
+
 func request_respawn() -> void:
 	if is_respawning:
 		return
@@ -317,3 +337,4 @@ func _reset_movement_state() -> void:
 	coyote_timer = 0.0
 
 	_clear_wall_state()
+
