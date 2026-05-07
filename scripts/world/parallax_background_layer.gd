@@ -13,6 +13,11 @@ class_name ParallaxBackgroundLayer
 		horizontal_scroll_scale = value
 		apply_settings()
 
+@export_range(0.0, 2.0, 0.01) var vertical_scroll_scale: float = 1.0:
+	set(value):
+		vertical_scroll_scale = value
+		apply_settings()
+
 @export var auto_scroll_enabled: bool = false:
 	set(value):
 		auto_scroll_enabled = value
@@ -50,8 +55,8 @@ func apply_settings() -> void:
 	follow_viewport = true
 	ignore_camera_scroll = false
 
-	# only use horizontal parallax 
-	scroll_scale = Vector2(horizontal_scroll_scale, 0.0)
+	# 
+	scroll_scale = Vector2(horizontal_scroll_scale, vertical_scroll_scale)
 
 	var scroll_speed: float = auto_scroll_speed if auto_scroll_enabled else 0.0
 	autoscroll = Vector2(scroll_speed, 0.0)

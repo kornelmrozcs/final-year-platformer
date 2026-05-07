@@ -4,5 +4,7 @@
 
 [node name="Level2" unique_id=2127040796 instance=ExtResource("1_syynt")]
 
-[node name="Portal" parent="." index="4" unique_id=266919062]
+[node name="Portal" parent="." index="5" unique_id=266919062]
 position = Vector2(348, 692)
+
+[editable path="ParallaxBackground"]

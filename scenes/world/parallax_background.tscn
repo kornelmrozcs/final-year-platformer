@@ -17,8 +17,11 @@ scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(1440, 0)
 repeat_times = 2
 script = ExtResource("2_3tmwh")
+vertical_scroll_scale = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Layer01" unique_id=557065915]
+position = Vector2(0, -220)
+scale = Vector2(1, 2.625)
 texture = ExtResource("2_6yc87")
 
 [node name="Layer05" type="Parallax2D" parent="." unique_id=786414950]
@@ -27,6 +30,7 @@ scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(1440, 0)
 repeat_times = 2
 script = ExtResource("2_3tmwh")
+vertical_scroll_scale = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Layer05" unique_id=1342085539]
 position = Vector2(-8, -32)
@@ -38,6 +42,7 @@ scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(1440, 0)
 repeat_times = 2
 script = ExtResource("2_3tmwh")
+vertical_scroll_scale = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Layer02" unique_id=231068758]
 texture = ExtResource("4_x4s24")
@@ -48,6 +53,7 @@ scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(1440, 0)
 repeat_times = 2
 script = ExtResource("2_3tmwh")
+vertical_scroll_scale = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Layer03" unique_id=2140236382]
 texture = ExtResource("5_7h7ri")
@@ -58,6 +64,7 @@ scroll_scale = Vector2(0.2, 0)
 repeat_size = Vector2(1440, 0)
 repeat_times = 2
 script = ExtResource("2_3tmwh")
+vertical_scroll_scale = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Layer04" unique_id=310281138]
 texture = ExtResource("6_nvki5")

@@ -9,44 +9,42 @@
 next_scene_path = "uid://cmit10k6q4dl2"
 
 [node name="Layer01" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="0" unique_id=1468812676]
-scroll_scale = Vector2(0, 0)
-horizontal_scroll_scale = 0.0
+vertical_scroll_scale = 1.0
 
 [node name="Layer05" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="1" unique_id=786414950]
-scroll_scale = Vector2(0.01, 0)
-autoscroll = Vector2(-3, 0)
-horizontal_scroll_scale = 0.01
+scroll_scale = Vector2(0.15, 1)
+autoscroll = Vector2(-2, 0)
+horizontal_scroll_scale = 0.15
+vertical_scroll_scale = 1.0
 auto_scroll_enabled = true
-auto_scroll_speed = -3.0
+auto_scroll_speed = -2.0
 
 [node name="Layer02" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="2" unique_id=2000714898]
-scroll_scale = Vector2(0, 0)
-horizontal_scroll_scale = 0.0
+vertical_scroll_scale = 1.0
 
 [node name="Layer03" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="3" unique_id=1482827363]
-scroll_scale = Vector2(0.17, 0)
-horizontal_scroll_scale = 0.17
-
-[node name="Sprite2D" parent="ParallaxBackground/Layer03" index="0" unique_id=2140236382]
-position = Vector2(0, -30)
+scroll_scale = Vector2(0.5, 1)
+horizontal_scroll_scale = 0.5
+vertical_scroll_scale = 1.0
 
 [node name="Layer04" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="4" unique_id=124066594]
-scroll_scale = Vector2(0.26, 0)
-horizontal_scroll_scale = 0.26
+scroll_scale = Vector2(0.7, 1)
+horizontal_scroll_scale = 0.7
+vertical_scroll_scale = 1.0
 
 [node name="Layer06" type="Parallax2D" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="5" unique_id=1166509481]
 z_index = -100
-scroll_scale = Vector2(0.02, 0)
+scroll_scale = Vector2(0.8, 1)
 repeat_size = Vector2(1440, 0)
 autoscroll = Vector2(-5, 0)
 repeat_times = 2
 script = ExtResource("2_ur07v")
-horizontal_scroll_scale = 0.02
+horizontal_scroll_scale = 0.8
 auto_scroll_enabled = true
 auto_scroll_speed = -5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer06" index="0" unique_id=1746089797]
-position = Vector2(-11, 121)
+position = Vector2(-25, 331)
 texture = ExtResource("3_ur07v")
 
 [node name="TileMap" parent="." index="1" unique_id=864935402]

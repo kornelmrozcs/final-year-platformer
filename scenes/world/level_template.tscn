@@ -310,6 +310,27 @@ script = ExtResource("1_o4wlu")
 [node name="ParallaxBackground" parent="." unique_id=259016423 instance=ExtResource("2_brod4")]
 position = Vector2(435, 346)
 
+[node name="Layer01" parent="ParallaxBackground" index="0" unique_id=1468812676]
+scroll_scale = Vector2(0, 1)
+scroll_offset = Vector2(0, 149)
+horizontal_scroll_scale = 0.0
+
+[node name="Layer05" parent="ParallaxBackground" index="1" unique_id=786414950]
+scroll_scale = Vector2(0.2, 1)
+scroll_offset = Vector2(0, 149)
+
+[node name="Layer02" parent="ParallaxBackground" index="2" unique_id=2000714898]
+scroll_scale = Vector2(0.2, 1)
+scroll_offset = Vector2(0, 149)
+
+[node name="Layer03" parent="ParallaxBackground" index="3" unique_id=1482827363]
+scroll_scale = Vector2(0.2, 1)
+scroll_offset = Vector2(0, 149)
+
+[node name="Layer04" parent="ParallaxBackground" index="4" unique_id=124066594]
+scroll_scale = Vector2(0.2, 1)
+scroll_offset = Vector2(0, 149)
+
 [node name="TileMap" type="TileMap" parent="." unique_id=864935402]
 z_index = 1
 tile_set = SubResource("TileSet_5ttxa")
@@ -340,3 +361,5 @@ position = Vector2(348, 688)
 
 [node name="Collectable" parent="Collectables" unique_id=2097911153 instance=ExtResource("6_78oux")]
 position = Vector2(311, 699)
+
+[editable path="ParallaxBackground"]
