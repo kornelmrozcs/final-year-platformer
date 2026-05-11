@@ -10,19 +10,8 @@
 next_scene_path = "uid://cmit10k6q4dl2"
 
 [node name="Layer05" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="1" unique_id=786414950]
-scroll_scale = Vector2(0.15, 1)
 autoscroll = Vector2(-2, 0)
-horizontal_scroll_scale = 0.15
-auto_scroll_enabled = true
 auto_scroll_speed = -2.0
-
-[node name="Layer03" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="3" unique_id=1482827363]
-scroll_scale = Vector2(0.5, 1)
-horizontal_scroll_scale = 0.5
-
-[node name="Layer04" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="4" unique_id=124066594]
-scroll_scale = Vector2(0.7, 1)
-horizontal_scroll_scale = 0.7
 
 [node name="Layer06" type="Parallax2D" parent="ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="5" unique_id=1166509481]
 z_index = -100

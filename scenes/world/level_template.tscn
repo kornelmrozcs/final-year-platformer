@@ -616,9 +616,13 @@ horizontal_scroll_scale = 0.0
 vertical_scroll_scale = 1.0
 
 [node name="Layer05" parent="ParallaxBackground" index="1" unique_id=786414950]
-scroll_scale = Vector2(0.2, 1)
+scroll_scale = Vector2(0.15, 1)
 scroll_offset = Vector2(0, 149)
+autoscroll = Vector2(-3, 0)
+horizontal_scroll_scale = 0.15
 vertical_scroll_scale = 1.0
+auto_scroll_enabled = true
+auto_scroll_speed = -3.0
 
 [node name="Layer02" parent="ParallaxBackground" index="2" unique_id=2000714898]
 scroll_scale = Vector2(0.2, 1)
@@ -626,13 +630,15 @@ scroll_offset = Vector2(0, 149)
 vertical_scroll_scale = 1.0
 
 [node name="Layer03" parent="ParallaxBackground" index="3" unique_id=1482827363]
-scroll_scale = Vector2(0.2, 1)
+scroll_scale = Vector2(0.5, 1)
 scroll_offset = Vector2(0, 149)
+horizontal_scroll_scale = 0.5
 vertical_scroll_scale = 1.0
 
 [node name="Layer04" parent="ParallaxBackground" index="4" unique_id=124066594]
-scroll_scale = Vector2(0.2, 1)
+scroll_scale = Vector2(0.7, 1)
 scroll_offset = Vector2(0, 149)
+horizontal_scroll_scale = 0.7
 vertical_scroll_scale = 1.0
 
 [node name="TileMap" type="TileMap" parent="." unique_id=864935402]

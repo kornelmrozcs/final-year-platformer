@@ -120,7 +120,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
-radius = 4.0
+radius = 2.0
 height = 10.0
 
 [node name="Player" type="CharacterBody2D" unique_id=390292942 groups=["player"]]
@@ -160,7 +160,7 @@ libraries/ = SubResource("AnimationLibrary_je7p5")
 autoplay = &"Idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerAnimation" unique_id=1918074834]
-position = Vector2(0, -2)
+position = Vector2(3, -2)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_8afob")
 region_enabled = true
