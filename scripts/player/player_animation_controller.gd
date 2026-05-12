@@ -17,6 +17,8 @@ func play(animation_name: String) -> void:
 		return
 
 	animation_player.play(animation_name)
+	# apply first frame straight away
+	animation_player.advance(0.0)
 
 
 func update_standard_facing() -> void:

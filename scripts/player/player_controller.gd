@@ -28,6 +28,9 @@ class_name PlayerController
 ## fall speed while sliding on a wall
 @export var wall_slide_speed: float = 32.0
 
+## allow wall slide slightly before the player starts falling
+@export var wall_slide_start_velocity: float = -64.0
+
 ## short stick to the wall when first touching it
 @export var wall_slide_stick_time: float = 0.12
 
@@ -184,8 +187,11 @@ func apply_wall_slide(delta: float) -> void:
 
 
 func can_wall_slide() -> bool:
-	return is_touching_jumpable_wall and not is_on_floor() and velocity.y >= 0.0
-
+	return (
+		is_touching_jumpable_wall
+		and not is_on_floor()
+		and velocity.y >= wall_slide_start_velocity
+	)
 
 func _update_jump_buffer(delta: float) -> void:
 	# remember jump input for a short moment
