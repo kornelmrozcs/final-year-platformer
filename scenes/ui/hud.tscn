@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://ck2i6tgtn6mhj"]
+
+[ext_resource type="Script" uid="uid://bo1j2qw5iqm0e" path="res://scripts/ui/hud.gd" id="1_0mwgc"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1625729993]
+script = ExtResource("1_0mwgc")
+
+[node name="Control" type="Control" parent="." unique_id=753581220]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 56.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=2143632619]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimerLabel" type="Label" parent="Control/VBoxContainer" unique_id=402141153]
+layout_mode = 2
+
+[node name="DeathsLabel" type="Label" parent="Control/VBoxContainer" unique_id=1757290157]
+layout_mode = 2
+
+[node name="CollectablesLabel" type="Label" parent="Control/VBoxContainer" unique_id=1706154020]
+layout_mode = 2

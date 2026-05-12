@@ -4,16 +4,28 @@ class_name LevelController
 
 @export var portal_path: NodePath = NodePath("Portal")
 @export_file("*.tscn") var next_scene_path: String = ""
+@export var reset_run_on_start: bool = false
+@export var start_timer_on_ready: bool = true
+@export var hud_path: NodePath = NodePath("HUD")
 
 @onready var portal: Portal = get_node_or_null(portal_path) as Portal
+@onready var hud: HUD = get_node_or_null(hud_path) as HUD
 
 var total_collectables: int = 0
 var collected_count: int = 0
 
 
 func _ready() -> void:
+
+	if reset_run_on_start:
+		GameManager.reset_run()
+
+	if start_timer_on_ready:
+		GameManager.start_run()
+
 	_setup_portal()
 	_setup_collectables()
+	_update_hud_collectables()
 
 	if portal == null:
 		push_warning("Level has no portal set.")
@@ -23,6 +35,7 @@ func _ready() -> void:
 		portal.open(false)
 	else:
 		portal.close()
+		
 
 
 func _setup_portal() -> void:
@@ -55,6 +68,7 @@ func _find_collectables(parent: Node, result: Array[Collectable]) -> void:
 
 func _on_collectable_collected(_collectable: Collectable) -> void:
 	collected_count += 1
+	_update_hud_collectables()
 
 	if collected_count >= total_collectables:
 		_open_portal()
@@ -77,3 +91,9 @@ func _on_player_entered_portal() -> void:
 
 func _change_scene() -> void:
 	get_tree().change_scene_to_file(next_scene_path)
+
+func _update_hud_collectables() -> void:
+	if hud == null:
+		return
+
+	hud.update_collectables(collected_count, total_collectables)

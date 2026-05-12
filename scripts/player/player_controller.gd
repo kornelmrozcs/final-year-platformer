@@ -359,6 +359,9 @@ func request_respawn(death_reason: String = "death", force_respawn: bool = false
 		_print_death_debug_message(death_reason)
 		return
 
+	if not force_respawn and GameManager != null:
+		GameManager.add_death()
+
 	state_machine.transition_to("Respawn")
 
 
