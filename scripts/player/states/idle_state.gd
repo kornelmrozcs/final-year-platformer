@@ -2,7 +2,6 @@ extends PlayerState
 
 
 func enter(_previous_state: PlayerState) -> void:
-	print("Idle")
 	player.animation_controller.play("Idle")
 
 func physics_update(delta: float) -> void:

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bvf1cre77mmbu"]
+
+[ext_resource type="PackedScene" uid="uid://ha22espfmwr7" path="res://scenes/world/level_template.tscn" id="1_6bair"]
+
+[node name="Level3" unique_id=2127040796 instance=ExtResource("1_6bair")]
+
+[editable path="ParallaxBackground"]

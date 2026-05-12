@@ -2,7 +2,6 @@ extends PlayerState
 
 
 func enter(_previous_state: PlayerState) -> void:
-	print("Jump")
 	player.animation_controller.play("Jump")
 
 	if player.can_wall_jump():

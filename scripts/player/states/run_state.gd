@@ -2,7 +2,6 @@ extends PlayerState
 
 
 func enter(_previous_state: PlayerState) -> void:
-	print("Run")
 	player.animation_controller.play("Run")
 
 

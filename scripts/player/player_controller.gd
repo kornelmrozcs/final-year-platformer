@@ -55,6 +55,18 @@ class_name PlayerController
 ## tilemaps and objects in this group can kill the player
 @export var hazard_group_name: StringName = &"hazard"
 
+## stops deaths from respawning the player while testing
+@export var debug_death_mode: bool = false
+
+## allow debug death mode to be toggled while the game is running
+@export var allow_debug_death_toggle: bool = true
+
+@export var debug_death_toggle_action: StringName = &"toggle_debug_death_mode"
+@export var debug_manual_respawn_action: StringName = &"debug_manual_respawn"
+
+## stops hazard tiles printing every frame
+@export var debug_death_message_cooldown: float = 0.25
+
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_controller: PlayerAnimationController = $PlayerAnimation
@@ -77,6 +89,7 @@ var wall_slide_exhausted: bool = false
 var was_touching_jumpable_wall: bool = false
 
 var is_respawning: bool = false
+var debug_death_message_timer: float = 0.0
 
 func _ready() -> void:
 	add_to_group("player")
@@ -84,6 +97,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_handle_debug_inputs()
+	_update_debug_death_message_timer(delta)
 	if is_respawning:
 		state_machine.physics_update(delta)
 		return
@@ -290,6 +305,30 @@ func _clear_wall_state() -> void:
 	wall_slide_exhausted = false
 	was_touching_jumpable_wall = false
 
+func _handle_debug_inputs() -> void:
+	if not allow_debug_death_toggle:
+		return
+
+	if InputMap.has_action(debug_death_toggle_action) and Input.is_action_just_pressed(debug_death_toggle_action):
+		debug_death_mode = not debug_death_mode
+		print("[Debug] death mode: " + ("ON" if debug_death_mode else "OFF"))
+
+	if debug_death_mode and InputMap.has_action(debug_manual_respawn_action) and Input.is_action_just_pressed(debug_manual_respawn_action):
+		request_respawn("manual debug respawn", true)
+
+
+func _update_debug_death_message_timer(delta: float) -> void:
+	if debug_death_message_timer > 0.0:
+		debug_death_message_timer = max(debug_death_message_timer - delta, 0.0)
+
+
+func _print_death_debug_message(death_reason: String) -> void:
+	if debug_death_message_timer > 0.0:
+		return
+
+	debug_death_message_timer = debug_death_message_cooldown
+	print("[Death Debug] " + death_reason)
+
 func _check_hazard_collisions() -> void:
 	if is_respawning:
 		return
@@ -303,11 +342,15 @@ func _check_hazard_collisions() -> void:
 
 		# solid hazard tiles use this group
 		if collider is Node and collider.is_in_group(hazard_group_name):
-			request_respawn()
+			request_respawn("hazard collision: " + str(collider.name))
 			return
 
-func request_respawn() -> void:
+func request_respawn(death_reason: String = "death", force_respawn: bool = false) -> void:
 	if is_respawning:
+		return
+
+	if debug_death_mode and not force_respawn:
+		_print_death_debug_message(death_reason)
 		return
 
 	state_machine.transition_to("Respawn")
