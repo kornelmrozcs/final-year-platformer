@@ -84,7 +84,8 @@ animation_speed = 4.0
 sprite_frames = SubResource("SpriteFrames_i2ekv")
 animation = &"spin"
 autoplay = "spin"
-frame_progress = 0.9589054
+frame_progress = 0.68419945
+speed_scale = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=542107158]
 shape = SubResource("CircleShape2D_5uble")

@@ -54,7 +54,7 @@ func _ready() -> void:
 	_apply_animation_settings()
 	queue_redraw()
 
-	# keep this here so the scene works without manual signal setup
+	# connect signal here so the saw works after instancing
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
 
@@ -66,7 +66,7 @@ func _draw() -> void:
 	if not show_path_preview:
 		return
 
-	# show saw travel path in the editor
+	# draw movement path while editing the level
 	draw_line(Vector2.ZERO, move_offset, Color(1.0, 0.3, 0.3, 0.9), 2.0)
 	draw_circle(move_offset, 4.0, Color(1.0, 0.3, 0.3, 0.9))
 

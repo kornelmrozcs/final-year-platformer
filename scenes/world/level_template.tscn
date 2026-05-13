@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dhkyobphalxs6" path="res://scenes/player/player.tscn" id="2_21vdc"]
 [ext_resource type="PackedScene" uid="uid://cxsf5siikdsid" path="res://scenes/world/parallax_background.tscn" id="2_brod4"]
 [ext_resource type="PackedScene" uid="uid://t3mi0fv2tfft" path="res://scenes/hazards/fall_death.tscn" id="3_78oux"]
+[ext_resource type="PackedScene" uid="uid://boa0ktkc3s7bg" path="res://scenes/ui/respawn_fade.tscn" id="3_jxp0u"]
+[ext_resource type="Script" uid="uid://bcm1s0fqaghiv" path="res://scripts/fx/death_splatter_spawner.gd" id="3_ykblh"]
 [ext_resource type="Texture2D" uid="uid://c1il74uja0kmq" path="res://assets/tilemaps/spikes_surface.png" id="4_c78ue"]
+[ext_resource type="Texture2D" uid="uid://btyoidayngya1" path="res://assets/sprites/fx/player_splatter_sheet.png" id="4_f3ps6"]
 [ext_resource type="PackedScene" uid="uid://ceamoimb7xsef" path="res://scenes/hazards/water.tscn" id="4_o4wlu"]
 [ext_resource type="Script" uid="uid://3a0e2nch40j0" path="res://scripts/hazards/deadly_surfaces.gd" id="5_6trs4"]
 [ext_resource type="PackedScene" uid="uid://ypefq5svn5u7" path="res://scenes/interactables/portal.tscn" id="5_21vdc"]
@@ -612,6 +615,20 @@ script = ExtResource("1_o4wlu")
 
 [node name="HUD" parent="." unique_id=1625729993 instance=ExtResource("2_2mhyq")]
 
+[node name="DeathSplatter" type="Node2D" parent="." unique_id=654783499]
+script = ExtResource("3_ykblh")
+splat_texture = ExtResource("4_f3ps6")
+splat_count = 8
+metadata/_custom_type_script = "uid://bcm1s0fqaghiv"
+
+[node name="Canvas" type="Sprite2D" parent="DeathSplatter" unique_id=1077995982]
+z_index = 6
+texture = ExtResource("4_f3ps6")
+centered = false
+
+[node name="RespawnFade" parent="." unique_id=1441649983 instance=ExtResource("3_jxp0u")]
+visible = false
+
 [node name="ParallaxBackground" parent="." unique_id=259016423 instance=ExtResource("2_brod4")]
 position = Vector2(435, 346)
 
@@ -694,6 +711,6 @@ position = Vector2(59, 672)
 [node name="Hazards" type="Node" parent="." unique_id=1423184231]
 
 [node name="MovingSaw" parent="Hazards" unique_id=463323808 instance=ExtResource("13_sk85y")]
-position = Vector2(147, 574)
+position = Vector2(90, 685)
 
 [editable path="ParallaxBackground"]

@@ -42,7 +42,7 @@ func _ready() -> void:
 		# LevelController resets nodes in this group when the player dies
 		add_to_group("reset_on_respawn")
 
-	# connect here so this scene works after being instanced into any level
+	# connect detector here so each platform instance works on its own
 	if not player_detector.body_entered.is_connected(_on_player_detector_body_entered):
 		player_detector.body_entered.connect(_on_player_detector_body_entered)
 
@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	if collision == null:
 		return
 
-	# when the falling platform hits something, hide it until player respawns
+	# hide platform after it hits solid ground
 	_hide_until_respawn()
 
 
@@ -89,7 +89,7 @@ func _start_break_delay() -> void:
 	# wait first, so the player has a short warning window
 	await get_tree().create_timer(max(break_delay, 0.0)).timeout
 
-	# if player respawned during the delay, this old sequence should stop
+	# stop old delay if player already respawned
 	if current_reset_version != reset_version:
 		return
 

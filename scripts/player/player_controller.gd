@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name PlayerController
 
 signal respawn_started
+signal respawn_position_reached
+signal player_died(death_position: Vector2, death_reason: String, player_body: CollisionObject2D)
 
 ## max left/right speed
 @export var move_speed: float = 256.0
@@ -361,8 +363,12 @@ func request_respawn(death_reason: String = "death", force_respawn: bool = false
 		_print_death_debug_message(death_reason)
 		return
 
-	if not force_respawn and GameManager != null:
-		GameManager.add_death()
+	if not force_respawn:
+		# send death position for visual feedback
+		player_died.emit(global_position, death_reason, self)
+
+		if GameManager != null:
+			GameManager.add_death()
 
 	state_machine.transition_to("Respawn")
 
@@ -381,6 +387,9 @@ func start_respawn() -> void:
 
 
 func finish_respawn() -> void:
+	# reset level objects before the player comes back on screen
+	respawn_position_reached.emit()
+
 	# show player again after position reset
 	visible = true
 	collision_shape.set_deferred("disabled", false)
