@@ -42,8 +42,19 @@ position = Vector2(489, 91)
 
 [node name="MovingPlatform" parent="Plaftorms" parent_id_path=PackedInt32Array(594021160) index="0" unique_id=585725445]
 position = Vector2(215, 611)
+wait_time = 0.4
+
+[node name="LinearMover" parent="Plaftorms/MovingPlatform" index="3" unique_id=952406164]
+wait_time = 0.4
 
 [node name="MovingPlatform3" parent="Plaftorms" parent_id_path=PackedInt32Array(594021160) index="1" unique_id=368166068 instance=ExtResource("3_4xqcg")]
 position = Vector2(36, 433)
 
+[node name="MovingSaw" parent="Hazards" parent_id_path=PackedInt32Array(1423184231) index="0" unique_id=463323808]
+position = Vector2(115, 388)
+move_offset = Vector2(64, 0)
+travel_time = 4.0
+wait_time = 0.35
+
 [editable path="ParallaxBackground"]
+[editable path="Plaftorms/MovingPlatform"]

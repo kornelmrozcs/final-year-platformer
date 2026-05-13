@@ -5,7 +5,7 @@ class_name LinearMover
 @export var target_path: NodePath = NodePath("..")
 @export var end_point_path: NodePath = NodePath("../EndPoint")
 
-@export var use_end_point: bool = true
+@export var use_end_point: bool = false
 @export var move_offset: Vector2 = Vector2(128.0, 0.0)
 
 @export var active: bool = true
@@ -21,6 +21,10 @@ var wait_timer: float = 0.0
 
 
 func _ready() -> void:
+	refresh_positions()
+
+
+func refresh_positions() -> void:
 	target = get_node_or_null(target_path) as Node2D
 
 	if target == null:
@@ -30,6 +34,7 @@ func _ready() -> void:
 	start_position = target.global_position
 	end_position = _get_end_position()
 	moving_towards_end = starts_towards_end
+	wait_timer = 0.0
 
 
 func _physics_process(delta: float) -> void:

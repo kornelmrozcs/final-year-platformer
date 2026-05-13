@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bp7lurgrvb53e"]
+
+[ext_resource type="Script" uid="uid://b5m01omf3aq2i" path="res://scripts/hazards/moving_saw.gd" id="1_5uble"]
+[ext_resource type="Script" uid="uid://0d3ua6uqm7qh" path="res://scripts/movement/linear_mover.gd" id="1_6xq15"]
+[ext_resource type="Texture2D" uid="uid://c6cljvgkxi048" path="res://assets/sprites/hazards/saw_on.png" id="2_gpqn5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10ug5"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6ova"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(38, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuodh"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(76, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng1rx"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(114, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cci6"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(152, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qfj8"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(190, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_677ml"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(228, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2xi4"]
+atlas = ExtResource("2_gpqn5")
+region = Rect2(266, 0, 38, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2ekv"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10ug5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6ova")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuodh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng1rx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cci6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qfj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_677ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2xi4")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uble"]
+radius = 17.0
+
+[node name="MovingSaw" type="Area2D" unique_id=463323808]
+script = ExtResource("1_5uble")
+animation_speed = 4.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=868719577]
+sprite_frames = SubResource("SpriteFrames_i2ekv")
+animation = &"spin"
+autoplay = "spin"
+frame_progress = 0.9589054
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=542107158]
+shape = SubResource("CircleShape2D_5uble")
+
+[node name="LinearMover" type="Node" parent="." unique_id=1974382556]
+script = ExtResource("1_6xq15")
+metadata/_custom_type_script = "uid://0d3ua6uqm7qh"
