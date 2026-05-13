@@ -3,7 +3,6 @@ class_name PlayerController
 
 signal respawn_started
 signal respawn_position_reached
-signal player_died(death_position: Vector2, death_reason: String, player_body: CollisionObject2D)
 
 ## max left/right speed
 @export var move_speed: float = 256.0
@@ -364,8 +363,7 @@ func request_respawn(death_reason: String = "death", force_respawn: bool = false
 		return
 
 	if not force_respawn:
-		# send death position for visual feedback
-		player_died.emit(global_position, death_reason, self)
+
 
 		if GameManager != null:
 			GameManager.add_death()

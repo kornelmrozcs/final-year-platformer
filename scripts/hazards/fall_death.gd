@@ -12,4 +12,4 @@ func _on_body_entered(body: Node) -> void:
 		return
 
 	if body.has_method("request_respawn"):
-		body.request_respawn()
+		body.request_respawn("fall death area: " + str(name))
