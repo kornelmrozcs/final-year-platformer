@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ha22espfmwr7" path="res://scenes/world/level_template.tscn" id="1_6bair"]
 
 [node name="Level3" unique_id=2127040796 instance=ExtResource("1_6bair")]
-next_scene_path = "<null>"
+next_scene_path = "uid://bk17prs8r5buc"
 
 [node name="Sprite2D" parent="ParallaxBackground/Layer01" parent_id_path=PackedInt32Array(259016423, 1468812676) index="0" unique_id=557065915]
 position = Vector2(419, -344)
