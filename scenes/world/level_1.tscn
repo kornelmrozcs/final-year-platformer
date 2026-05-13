@@ -82,8 +82,10 @@ position = Vector2(-16, 569)
 [node name="MovingPlatform" parent="Plaftorms" parent_id_path=PackedInt32Array(594021160) index="0" unique_id=585725445]
 position = Vector2(207, 64)
 
-[node name="MovingSaw" parent="." index="11" unique_id=463323808]
+[node name="BreakablePlatform" parent="Plaftorms" parent_id_path=PackedInt32Array(594021160) index="1" unique_id=1755816661]
+position = Vector2(207, 146)
+
+[node name="MovingSaw" parent="Hazards" parent_id_path=PackedInt32Array(1423184231) index="0" unique_id=463323808]
 position = Vector2(205, 112)
 
 [editable path="ParallaxBackground"]
-[editable path="Plaftorms/MovingPlatform"]

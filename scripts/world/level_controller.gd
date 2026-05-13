@@ -7,16 +7,18 @@ class_name LevelController
 @export var reset_run_on_start: bool = false
 @export var start_timer_on_ready: bool = true
 @export var hud_path: NodePath = NodePath("HUD")
+@export var player_path: NodePath = NodePath("player")
+@export var resettable_group_name: StringName = &"reset_on_respawn"
 
 @onready var portal: Portal = get_node_or_null(portal_path) as Portal
 @onready var hud: HUD = get_node_or_null(hud_path) as HUD
+@onready var player: PlayerController = get_node_or_null(player_path) as PlayerController
 
 var total_collectables: int = 0
 var collected_count: int = 0
 
 
 func _ready() -> void:
-
 	if reset_run_on_start:
 		GameManager.reset_run()
 
@@ -24,6 +26,7 @@ func _ready() -> void:
 		GameManager.start_run()
 
 	_setup_portal()
+	_setup_player_respawn_reset()
 	_setup_collectables()
 	_update_hud_collectables()
 
@@ -97,3 +100,24 @@ func _update_hud_collectables() -> void:
 		return
 
 	hud.update_collectables(collected_count, total_collectables)
+
+func _setup_player_respawn_reset() -> void:
+	if player == null:
+		push_warning("Level has no player set.")
+		return
+
+	if not player.respawn_started.is_connected(_on_player_respawn_started):
+		player.respawn_started.connect(_on_player_respawn_started)
+
+
+func _on_player_respawn_started() -> void:
+	_reset_respawn_objects()
+
+
+func _reset_respawn_objects() -> void:
+	for node in get_tree().get_nodes_in_group(resettable_group_name):
+		if not is_ancestor_of(node):
+			continue
+
+		if node.has_method("reset_for_respawn"):
+			node.reset_for_respawn()

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ci5p2na6aqoqh" path="res://scenes/interactables/collectable.tscn" id="6_78oux"]
 [ext_resource type="PackedScene" uid="uid://dle5i361hdp8e" path="res://scenes/platforms/moving_platform.tscn" id="12_gpohp"]
 [ext_resource type="PackedScene" uid="uid://bp7lurgrvb53e" path="res://scenes/hazards/moving_saw.tscn" id="13_sk85y"]
+[ext_resource type="PackedScene" uid="uid://bjm3mh004wl1v" path="res://scenes/platforms/breakable_platform.tscn" id="14_twr6k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4y73"]
 texture = ExtResource("1_p8h2d")
@@ -687,10 +688,12 @@ position = Vector2(311, 699)
 [node name="MovingPlatform" parent="Plaftorms" unique_id=585725445 instance=ExtResource("12_gpohp")]
 position = Vector2(123, 670)
 
+[node name="BreakablePlatform" parent="Plaftorms" unique_id=1755816661 instance=ExtResource("14_twr6k")]
+position = Vector2(59, 672)
+
 [node name="Hazards" type="Node" parent="." unique_id=1423184231]
 
 [node name="MovingSaw" parent="Hazards" unique_id=463323808 instance=ExtResource("13_sk85y")]
 position = Vector2(147, 574)
 
 [editable path="ParallaxBackground"]
-[editable path="Plaftorms/MovingPlatform"]

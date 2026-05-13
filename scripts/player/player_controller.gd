@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PlayerController
 
+signal respawn_started
+
 ## max left/right speed
 @export var move_speed: float = 256.0
 
@@ -367,6 +369,8 @@ func request_respawn(death_reason: String = "death", force_respawn: bool = false
 
 func start_respawn() -> void:
 	is_respawning = true
+	respawn_started.emit()
+
 	_reset_movement_state()
 
 	# hide player during respawn
