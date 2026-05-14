@@ -28,7 +28,7 @@ surface_color = Color(1, 0.09803922, 0.16078432, 1)
 fill_color = Color(0.5137255, 0, 0.039215688, 0.7647059)
 
 [node name="Portal" parent="Interactables" parent_id_path=PackedInt32Array(679339684) index="0" unique_id=266919062]
-position = Vector2(894, 629)
+position = Vector2(896, 641)
 
 [node name="Collectable" parent="Interactables/Collectables" parent_id_path=PackedInt32Array(1676786546) index="0" unique_id=2097911153]
 position = Vector2(55, 519)

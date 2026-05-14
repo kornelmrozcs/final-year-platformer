@@ -18,7 +18,7 @@ water_width = 466.0
 water_height = 168.0
 
 [node name="Portal" parent="Interactables" parent_id_path=PackedInt32Array(679339684) index="0" unique_id=266919062]
-position = Vector2(637, 110)
+position = Vector2(637, 113)
 
 [node name="Collectable" parent="Interactables/Collectables" parent_id_path=PackedInt32Array(1676786546) index="0" unique_id=2097911153]
 position = Vector2(215, 600)

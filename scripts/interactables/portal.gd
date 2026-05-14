@@ -11,8 +11,8 @@ signal player_entered_portal
 var is_open: bool = false
 var is_used: bool = false
 
-var closed_region: Rect2 = Rect2(0, 0, 22, 22)
-var open_region: Rect2 = Rect2(22, 0, 22, 22)
+var closed_region: Rect2 = Rect2(0, 0, 32, 32)
+var open_region: Rect2 = Rect2(32, 0, 32, 32)
 
 
 func _ready() -> void:
