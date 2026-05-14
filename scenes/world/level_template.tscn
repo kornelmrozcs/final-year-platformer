@@ -306,6 +306,8 @@ texture = ExtResource("1_p8h2d")
 20:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:6/0 = 0
 7:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:2/0 = 0
+10:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_5ttxa"]
 physics_layer_0/collision_layer = 1
@@ -603,6 +605,8 @@ texture = ExtResource("4_c78ue")
 21:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 21:5/0 = 0
 21:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:3/0 = 0
+19:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.5395756, -1.0791512, 2.6978817, 3.5971756, 2.877739, 8, -1.4388695, 8, -0.17985916, 3.7770348)
 
 [sub_resource type="TileSet" id="TileSet_gpohp"]
 physics_layer_0/collision_layer = 1
@@ -672,8 +676,6 @@ layer_0/tile_data = PackedInt32Array(2883584, 393216, 0, 2883593, 458752, 0, 288
 tile_set = SubResource("TileSet_gpohp")
 format = 2
 script = ExtResource("5_6trs4")
-
-[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1635056477]
 
 [node name="Player" parent="." unique_id=390292942 instance=ExtResource("2_21vdc")]
 position = Vector2(3, 704)
