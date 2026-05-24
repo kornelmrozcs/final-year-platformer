@@ -1,4 +1,5 @@
 extends PlayerState
+## Temporary state used while the player is moved back to spawn.
 
 
 func enter(_previous_state: PlayerState) -> void:

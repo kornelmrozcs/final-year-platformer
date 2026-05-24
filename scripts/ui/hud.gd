@@ -1,4 +1,5 @@
 extends CanvasLayer
+## Small in-game HUD for timer, deaths and collectables.
 class_name HUD
 
 
@@ -19,9 +20,11 @@ func _process(_delta: float) -> void:
 	timer_label.text = "Time: " + GameManager.get_formatted_time()
 
 
+## Updates when GameManager death count changes.
 func update_deaths(deaths: int) -> void:
 	deaths_label.text = "Deaths: " + str(deaths)
 
 
+## Shows progress towards opening the portal.
 func update_collectables(collected: int, total: int) -> void:
 	collectables_label.text = "Collectables: %d / %d" % [collected, total]

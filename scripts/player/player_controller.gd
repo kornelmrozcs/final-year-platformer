@@ -1,4 +1,6 @@
 extends CharacterBody2D
+## Main player controller for movement, hazards and respawn.
+## Most values are exported so movement can be tuned inside Godot.
 class_name PlayerController
 
 signal respawn_started
@@ -67,7 +69,9 @@ signal respawn_position_reached
 ## allow debug death mode to be toggled while the game is running
 @export var allow_debug_death_toggle: bool = true
 
+## input action used to toggle death debug mode.
 @export var debug_death_toggle_action: StringName = &"toggle_debug_death_mode"
+## input action used to force respawn while testing.
 @export var debug_manual_respawn_action: StringName = &"debug_manual_respawn"
 
 ## stops hazard tiles printing every frame
@@ -354,6 +358,7 @@ func _check_hazard_collisions() -> void:
 			request_respawn("hazard collision: " + str(collider.name))
 			return
 
+## Starts death/respawn unless debug death mode is blocking it.
 func request_respawn(death_reason: String = "death", force_respawn: bool = false) -> void:
 	if is_respawning:
 		return
@@ -371,6 +376,7 @@ func request_respawn(death_reason: String = "death", force_respawn: bool = false
 	state_machine.transition_to("Respawn")
 
 
+## Locks player control and hides the player during fade.
 func start_respawn() -> void:
 	is_respawning = true
 	respawn_started.emit()
@@ -384,6 +390,7 @@ func start_respawn() -> void:
 	collision_shape.set_deferred("disabled", true)
 
 
+## Brings player back after level reset objects are ready.
 func finish_respawn() -> void:
 	# reset level objects before the player comes back on screen
 	respawn_position_reached.emit()

@@ -1,4 +1,5 @@
 extends CanvasLayer
+## Fade layer used to hide the respawn reset moment.
 class_name RespawnFade
 
 

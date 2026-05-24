@@ -1,7 +1,9 @@
 extends Control
+## End screen that shows final timer and death count.
 class_name ResultsScreen
 
 
+## Scene loaded when the player chooses to restart.
 @export_file("*.tscn") var restart_scene_path: String = "res://scenes/world/level_1.tscn"
 
 @onready var time_label: Label = $CenterContainer/VBoxContainer/TimeLabel

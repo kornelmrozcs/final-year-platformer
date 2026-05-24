@@ -1,4 +1,6 @@
 extends Node
+## Lightweight state machine for player movement states.
+## States are taken from child nodes so the setup stays visible in the scene.
 class_name PlayerStateMachine
 
 var player: PlayerController
@@ -6,6 +8,7 @@ var current_state: PlayerState
 var states: Dictionary = {}
 
 
+## Links every child state to the player and starts in Idle.
 func init(player_ref: PlayerController) -> void:
 	player = player_ref
 	states.clear()
@@ -30,6 +33,7 @@ func physics_update(delta: float) -> void:
 	current_state.physics_update(delta)
 
 
+## Changes state by child node name.
 func transition_to(state_name: String) -> void:
 	if not states.has(state_name):
 		push_warning("State does not exist: " + state_name)

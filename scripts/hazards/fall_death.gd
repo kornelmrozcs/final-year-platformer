@@ -1,5 +1,6 @@
 extends Area2D
 
+## Area at the bottom of the level that respawns the player.
 
 func _ready() -> void:
 	# connect here so I do not need to wire the signal by hand every time, cant wrap my head around signals now

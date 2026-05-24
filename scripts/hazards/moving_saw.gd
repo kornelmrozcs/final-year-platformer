@@ -1,47 +1,59 @@
 @tool
 extends Area2D
+## Moving hazard that uses LinearMover for its path.
+## It kills the player on touch and can show its path in the editor.
 class_name MovingSaw
 
 
+## Child mover node that handles the actual movement.
 @export var mover_path: NodePath = NodePath("LinearMover")
+## Sprite used for the saw animation.
 @export var sprite_path: NodePath = NodePath("AnimatedSprite2D")
 
+## Allows a placed saw to be disabled without deleting it.
 @export var active: bool = true:
 	set(value):
 		active = value
 		_apply_mover_settings()
 
+## Distance from start position to the end of the path.
 @export var move_offset: Vector2 = Vector2(128.0, 0.0):
 	set(value):
 		move_offset = value
 		_apply_mover_settings()
 		queue_redraw()
 
+## Time it takes to move from one end to the other.
 @export var travel_time: float = 2.0:
 	set(value):
 		travel_time = value
 		_apply_mover_settings()
 
+## Small pause at each end of the path.
 @export var wait_time: float = 0.15:
 	set(value):
 		wait_time = value
 		_apply_mover_settings()
 
+## Pick which direction the saw starts moving first.
 @export var starts_towards_end: bool = true:
 	set(value):
 		starts_towards_end = value
 		_apply_mover_settings()
 
+## Draws the movement line in editor only.
 @export var show_path_preview: bool = true:
 	set(value):
 		show_path_preview = value
 		queue_redraw()
 
+## Spin animation speed.
 @export var animation_speed: float = 12.0:
 	set(value):
 		animation_speed = value
 		_apply_animation_settings()
 
+## Text used in debug respawn messages.
 @export var death_reason: String = "saw hazard"
 
 var sprite: AnimatedSprite2D

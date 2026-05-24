@@ -1,8 +1,10 @@
 extends Area2D
+## Level exit. It stays closed until all collectables are picked up.
 class_name Portal
 
 signal player_entered_portal
 
+## Useful for test scenes with no collectables.
 @export var starts_open: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -25,6 +27,7 @@ func _ready() -> void:
 		close()
 
 
+## Opens the portal and optionally plays the open sound.
 func open(play_sound: bool = true) -> void:
 	if is_open:
 		return
@@ -36,6 +39,7 @@ func open(play_sound: bool = true) -> void:
 		audio_player.play()
 
 
+## Closes the portal and lets it be used again.
 func close() -> void:
 	is_open = false
 	is_used = false

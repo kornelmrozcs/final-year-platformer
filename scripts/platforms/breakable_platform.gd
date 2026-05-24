@@ -1,4 +1,6 @@
 extends CharacterBody2D
+## Platform that drops after the player steps on it.
+## It can reset after respawn so the level stays replayable.
 class_name BreakablePlatform
 
 
@@ -122,6 +124,7 @@ func _hide_until_respawn() -> void:
 	set_physics_process(false)
 
 
+## Called by LevelController when the player respawns.
 func reset_for_respawn() -> void:
 	reset_version += 1
 	_reset_platform_state()

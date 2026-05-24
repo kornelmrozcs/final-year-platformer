@@ -1,14 +1,24 @@
 extends Node2D
+## Main controller for each playable level.
+## Handles collectables, portal flow, HUD updates and respawn resets.
 class_name LevelController
 
 
+## Portal node used as the level exit.
 @export var portal_path: NodePath = NodePath("Portal")
+## Scene loaded after the player enters an open portal.
 @export_file("*.tscn") var next_scene_path: String = ""
+## Used only if this level should clear timer/deaths on load.
 @export var reset_run_on_start: bool = false
+## Starts the run timer when the level is ready.
 @export var start_timer_on_ready: bool = true
+## HUD node used for collectable display.
 @export var hud_path: NodePath = NodePath("HUD")
+## Player node used for respawn signals.
 @export var player_path: NodePath = NodePath("player")
+## Nodes in this group get reset after player death.
 @export var resettable_group_name: StringName = &"reset_on_respawn"
+## Fade layer used during respawn.
 @export var respawn_fade_path: NodePath = NodePath("RespawnFade")
 
 @onready var portal: Portal = get_node_or_null(portal_path) as Portal
@@ -51,6 +61,7 @@ func _setup_portal() -> void:
 		portal.player_entered_portal.connect(_on_player_entered_portal)
 
 
+## Finds collectables in the level and connects their signals.
 func _setup_collectables() -> void:
 	var collectables: Array[Collectable] = []
 	_find_collectables(self, collectables)
@@ -63,6 +74,7 @@ func _setup_collectables() -> void:
 			collectable.collected.connect(_on_collectable_collected)
 
 
+## Recursively searches children so inherited scenes can organise pickups freely.
 func _find_collectables(parent: Node, result: Array[Collectable]) -> void:
 	for child in parent.get_children():
 		if child is Collectable:
@@ -133,6 +145,7 @@ func _on_player_respawn_position_reached() -> void:
 	respawn_fade.fade_in()
 
 
+## Resets only objects that belong to this level scene.
 func _reset_respawn_objects() -> void:
 	for node in get_tree().get_nodes_in_group(resettable_group_name):
 		if not is_ancestor_of(node):

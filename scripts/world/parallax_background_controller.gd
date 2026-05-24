@@ -1,13 +1,16 @@
 @tool
 extends Node2D
+## Controls a group of parallax layers from one parent node.
 class_name ParallaxBackgroundController
 
 
+## Quick toggle for the full background.
 @export var background_enabled: bool = true:
 	set(value):
 		background_enabled = value
 		_apply_background()
 
+## Keep this on while placing layers in the editor.
 @export var update_in_editor: bool = true
 
 

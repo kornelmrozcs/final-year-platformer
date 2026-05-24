@@ -1,4 +1,5 @@
 extends PlayerState
+## Air state used while the player is falling down.
 
 
 func enter(_previous_state: PlayerState) -> void:

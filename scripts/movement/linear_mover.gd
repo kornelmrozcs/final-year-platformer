@@ -1,16 +1,26 @@
 extends Node
+## Reusable helper for simple back and forth movement.
+## Platforms and saws use this so the movement settings stay in one place.
 class_name LinearMover
 
 
+## Node that will actually be moved.
 @export var target_path: NodePath = NodePath("..")
+## Optional marker used when use_end_point is true.
 @export var end_point_path: NodePath = NodePath("../EndPoint")
 
+## Use an EndPoint marker instead of move_offset.
 @export var use_end_point: bool = false
+## Offset used for the end position when no marker is used.
 @export var move_offset: Vector2 = Vector2(128.0, 0.0)
 
+## Stops the movement without removing the node.
 @export var active: bool = true
+## Time for one half of the movement loop.
 @export var travel_time: float = 2.0
+## Wait time after reaching either end.
 @export var wait_time: float = 0.15
+## Starting direction for the first movement.
 @export var starts_towards_end: bool = true
 
 var target: Node2D
@@ -24,6 +34,7 @@ func _ready() -> void:
 	refresh_positions()
 
 
+## Re-checks start and end positions after moving things in the editor.
 func refresh_positions() -> void:
 	target = get_node_or_null(target_path) as Node2D
 

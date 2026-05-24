@@ -1,7 +1,9 @@
 extends Control
+## Simple start screen before the main run begins.
 class_name MainMenu
 
 
+## First level loaded after pressing Start Game.
 @export_file("*.tscn") var first_level_path: String = "res://scenes/world/level_1.tscn"
 
 @onready var start_button: Button = $CenterContainer/VBoxContainer/StartButton

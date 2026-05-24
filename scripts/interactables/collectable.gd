@@ -1,4 +1,6 @@
 extends Area2D
+## Pickup required before the portal can open.
+## LevelController finds these in the level tree.
 class_name Collectable
 
 signal collected(collectable: Collectable)

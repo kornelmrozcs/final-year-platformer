@@ -1,4 +1,6 @@
 extends CanvasLayer
+## Simple pause overlay used in levels.
+## It pauses the scene tree and stops the run timer.
 class_name PauseMenu
 
 
@@ -33,6 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_pause_game()
 
 
+## Opens the pause menu and freezes gameplay.
 func _pause_game() -> void:
 	is_open = true
 	was_timer_running = GameManager.timer_running
@@ -42,6 +45,7 @@ func _pause_game() -> void:
 	resume_button.grab_focus()
 
 
+## Closes the menu and restarts the timer if it was running.
 func _resume_game() -> void:
 	get_tree().paused = false
 	visible = false

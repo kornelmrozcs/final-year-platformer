@@ -1,4 +1,6 @@
 extends Node
+## Base state used by the player state machine.
+## Child states only override the parts they need.
 class_name PlayerState
 
 var player: PlayerController

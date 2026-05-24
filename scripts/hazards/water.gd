@@ -1,5 +1,7 @@
 @tool
 extends Node2D
+## Simple water surface used for visual splash feedback.
+## It is mostly a feel/clarity system, not a full water sim.
 class_name Water
 
 ## width of the water in pixels

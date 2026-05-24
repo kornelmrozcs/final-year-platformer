@@ -1,4 +1,5 @@
 extends PlayerState
+## Ground state when the player is moving left or right.
 
 
 func enter(_previous_state: PlayerState) -> void:

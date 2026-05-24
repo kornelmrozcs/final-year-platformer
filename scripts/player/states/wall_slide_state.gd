@@ -1,4 +1,5 @@
 extends PlayerState
+## Wall state used for sliding and wall jump checks.
 
 
 func enter(_previous_state: PlayerState) -> void:

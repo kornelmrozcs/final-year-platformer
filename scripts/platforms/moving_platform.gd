@@ -1,36 +1,45 @@
 @tool
 extends AnimatableBody2D
+## Moving platform controlled by a child LinearMover.
+## Path preview helps when placing platforms in levels.
 class_name MovingPlatform
 
 
+## Child mover node that handles the movement.
 @export var mover_path: NodePath = NodePath("LinearMover")
 
+## Allows this platform to be turned off for testing.
 @export var active: bool = true:
 	set(value):
 		active = value
 		_apply_mover_settings()
 
+## Distance from the start point to the end point.
 @export var move_offset: Vector2 = Vector2(128.0, 0.0):
 	set(value):
 		move_offset = value
 		_apply_mover_settings()
 		queue_redraw()
 
+## Time to move across the path.
 @export var travel_time: float = 2.0:
 	set(value):
 		travel_time = value
 		_apply_mover_settings()
 
+## Short stop at each end of the path.
 @export var wait_time: float = 0.15:
 	set(value):
 		wait_time = value
 		_apply_mover_settings()
 
+## Pick the first movement direction.
 @export var starts_towards_end: bool = true:
 	set(value):
 		starts_towards_end = value
 		_apply_mover_settings()
 
+## Shows the movement path in the editor.
 @export var show_path_preview: bool = true:
 	set(value):
 		show_path_preview = value
