@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ct05b2gxaqi07" path="res://scripts/world/level_controller.gd" id="1_o4wlu"]
 [ext_resource type="Texture2D" uid="uid://bnn8jl0srs5k5" path="res://assets/tilemaps/free_tiles.png" id="1_p8h2d"]
 [ext_resource type="PackedScene" uid="uid://ck2i6tgtn6mhj" path="res://scenes/ui/hud.tscn" id="2_2mhyq"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="2_pause"]
 [ext_resource type="PackedScene" uid="uid://dhkyobphalxs6" path="res://scenes/player/player.tscn" id="2_21vdc"]
 [ext_resource type="PackedScene" uid="uid://cxsf5siikdsid" path="res://scenes/world/parallax_background.tscn" id="2_brod4"]
 [ext_resource type="PackedScene" uid="uid://t3mi0fv2tfft" path="res://scenes/hazards/fall_death.tscn" id="3_78oux"]
@@ -622,6 +623,8 @@ respawn_fade_path = NodePath("UI/RespawnFade")
 [node name="UI" type="Node" parent="." unique_id=1387936776]
 
 [node name="HUD" parent="UI" unique_id=1625729993 instance=ExtResource("2_2mhyq")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("2_pause")]
 
 [node name="RespawnFade" parent="UI" unique_id=1441649983 instance=ExtResource("3_jxp0u")]
 visible = false
