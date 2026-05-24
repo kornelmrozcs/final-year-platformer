@@ -42,10 +42,12 @@ Main Menu -> Level 1 -> Level 2 -> Level 3 -> Results Screen
 
 ## Controls
 
+```text
 Move left - A/Left Arrow
 Move right - D/Right Arrow
 Jump - Space
 Pause - Esc
+```
 
 ## How to Play
 
