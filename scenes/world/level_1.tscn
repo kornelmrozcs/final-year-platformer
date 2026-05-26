@@ -10,7 +10,7 @@ reset_run_on_start = true
 
 [node name="Minimap" parent="UI" parent_id_path=PackedInt32Array(1387936776) index="2" unique_id=1757064221]
 visible = false
-viewport_size = Vector2i(62, 63)
+panel_offset = Vector2(33.095, 16)
 
 [node name="Layer05" parent="Visuals/ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="1" unique_id=786414950]
 autoscroll = Vector2(-2, 0)
@@ -76,6 +76,10 @@ position = Vector2(207, 146)
 position = Vector2(205, 112)
 
 [node name="MinimapCamera" parent="." index="10" unique_id=1905123390]
-position = Vector2(350, 430)
+position = Vector2(371, 609)
+
+[node name="MinimapViewArea" parent="." index="11" unique_id=973248517]
+position = Vector2(371, 608)
+view_size = Vector2(800, 500)
 
 [editable path="Visuals/ParallaxBackground"]

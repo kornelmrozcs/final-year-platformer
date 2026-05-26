@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bp7lurgrvb53e" path="res://scenes/hazards/moving_saw.tscn" id="13_sk85y"]
 [ext_resource type="PackedScene" uid="uid://bjm3mh004wl1v" path="res://scenes/platforms/breakable_platform.tscn" id="14_twr6k"]
 [ext_resource type="PackedScene" uid="uid://dxxcf42m3dy1g" path="res://scenes/ui/minimap.tscn" id="15_minimap"]
+[ext_resource type="Script" uid="uid://cp7lsu76g58p6" path="res://scripts/ui/minimap_view_area.gd" id="16_view_area"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4y73"]
 texture = ExtResource("1_p8h2d")
@@ -724,5 +725,10 @@ position = Vector2(147, 574)
 position = Vector2(480, 560)
 enabled = false
 zoom = Vector2(0.18, 0.18)
+
+[node name="MinimapViewArea" type="Node2D" parent="." unique_id=973248517]
+position = Vector2(455, 555)
+script = ExtResource("16_view_area")
+view_size = Vector2(1400, 900)
 
 [editable path="Visuals/ParallaxBackground"]

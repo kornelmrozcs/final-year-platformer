@@ -104,7 +104,11 @@ move_offset = Vector2(400, 0)
 travel_time = 6.0
 
 [node name="MinimapCamera" parent="." index="9" unique_id=1905123390]
-position = Vector2(455, 555)
+position = Vector2(454, 397)
 zoom = Vector2(0.16, 0.16)
+
+[node name="MinimapViewArea" parent="." index="10" unique_id=973248517]
+position = Vector2(452, 396)
+view_size = Vector2(980, 640)
 
 [editable path="Visuals/ParallaxBackground"]
