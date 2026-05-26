@@ -103,12 +103,17 @@ position = Vector2(207, 442)
 move_offset = Vector2(400, 0)
 travel_time = 6.0
 
-[node name="MinimapCamera" parent="." index="9" unique_id=1905123390]
+[node name="MinimapCamera" parent="Minimap" parent_id_path=PackedInt32Array(598935644) index="0" unique_id=1905123390]
 position = Vector2(454, 397)
 zoom = Vector2(0.16, 0.16)
 
-[node name="MinimapViewArea" parent="." index="10" unique_id=973248517]
+[node name="MinimapViewArea" parent="Minimap" parent_id_path=PackedInt32Array(598935644) index="1" unique_id=973248517]
 position = Vector2(452, 396)
 view_size = Vector2(980, 640)
+
+[node name="TutorialText" parent="." index="10" unique_id=1361439009]
+visible = false
+outline_size = 5
+font_size = 18
 
 [editable path="Visuals/ParallaxBackground"]

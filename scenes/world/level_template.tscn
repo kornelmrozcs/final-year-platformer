@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bjm3mh004wl1v" path="res://scenes/platforms/breakable_platform.tscn" id="14_twr6k"]
 [ext_resource type="PackedScene" uid="uid://dxxcf42m3dy1g" path="res://scenes/ui/minimap.tscn" id="15_minimap"]
 [ext_resource type="Script" uid="uid://cp7lsu76g58p6" path="res://scripts/ui/minimap_view_area.gd" id="16_view_area"]
+[ext_resource type="PackedScene" uid="uid://d2h3j1rq4xn23" path="res://scenes/world/tutorial_text.tscn" id="18_r6ymm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4y73"]
 texture = ExtResource("1_p8h2d")
@@ -310,6 +311,9 @@ texture = ExtResource("1_p8h2d")
 7:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:2/0 = 0
 10:2/0 = 0
+10:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 3.2374573, 8, 5.5756207, -5.935338, -0.17985725)
+11:3/0 = 0
+11:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 1.2590122, 2.5180225, -3.956891)
 
 [sub_resource type="TileSet" id="TileSet_5ttxa"]
 physics_layer_0/collision_layer = 1
@@ -630,6 +634,7 @@ visible = false
 fade_alpha = 1.0
 
 [node name="Minimap" parent="UI" unique_id=1757064221 instance=ExtResource("15_minimap")]
+view_area_path = NodePath("../../Minimap/MinimapViewArea")
 
 [node name="Visuals" type="Node" parent="." unique_id=1002086315]
 
@@ -721,14 +726,22 @@ position = Vector2(59, 672)
 [node name="MovingSaw" parent="Hazards" unique_id=463323808 instance=ExtResource("13_sk85y")]
 position = Vector2(147, 574)
 
-[node name="MinimapCamera" type="Camera2D" parent="." unique_id=1905123390]
+[node name="Minimap" type="Node" parent="." unique_id=598935644]
+
+[node name="MinimapCamera" type="Camera2D" parent="Minimap" unique_id=1905123390]
 position = Vector2(480, 560)
 enabled = false
 zoom = Vector2(0.18, 0.18)
 
-[node name="MinimapViewArea" type="Node2D" parent="." unique_id=973248517]
+[node name="MinimapViewArea" type="Node2D" parent="Minimap" unique_id=973248517]
 position = Vector2(455, 555)
 script = ExtResource("16_view_area")
-view_size = Vector2(1400, 900)
+
+[node name="Tutorial" type="Node" parent="." unique_id=999213393]
+
+[node name="TutorialText" parent="Tutorial" unique_id=1361439009 instance=ExtResource("18_r6ymm")]
+position = Vector2(95, 626)
+outline_size = 5
+font_size = 18
 
 [editable path="Visuals/ParallaxBackground"]

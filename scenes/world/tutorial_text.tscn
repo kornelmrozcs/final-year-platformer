@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d2h3j1rq4xn23"]
+
+[ext_resource type="Script" uid="uid://bwfnaxcuqv4j6" path="res://scripts/world/tutorial_text.gd" id="1_sqgsi"]
+
+[node name="TutorialText" type="Node2D" unique_id=1361439009]
+script = ExtResource("1_sqgsi")
+
+[node name="Background" type="ColorRect" parent="." unique_id=709983221]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1812941804]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+bbcode_enabled = true
+scroll_active = false
