@@ -1,26 +1,26 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://bqgb80u7ql1qi"]
 
-[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://jp0oudgt35qr" path="res://scripts/ui/main_menu.gd" id="1_0n6cx"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=808406767]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_main")
+script = ExtResource("1_0n6cx")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=714037756]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.03, 0.03, 0.04, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=812733674]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,20 +28,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=303470385]
 layout_mode = 2
-theme_override_constants/separation = 12
-alignment = 1
+theme_override_constants/separation = 10
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1660347669]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "FINAL YEAR PLATFORMER"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1093464584]
+layout_mode = 2
+text = "Responsive 2D platformer prototype"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=874564728]
+custom_minimum_size = Vector2(220, 34)
 layout_mode = 2
 text = "Start Game"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=127422977]
+custom_minimum_size = Vector2(220, 34)
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1523755659]
+custom_minimum_size = Vector2(220, 34)
 layout_mode = 2
 text = "Quit"

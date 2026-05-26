@@ -54,4 +54,7 @@ move_offset = Vector2(64, 0)
 travel_time = 4.0
 wait_time = 0.35
 
+[node name="MinimapCamera" parent="." index="9" unique_id=1905123390]
+position = Vector2(270, 390)
+
 [editable path="Visuals/ParallaxBackground"]

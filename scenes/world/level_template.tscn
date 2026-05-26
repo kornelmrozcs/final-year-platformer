@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ct05b2gxaqi07" path="res://scripts/world/level_controller.gd" id="1_o4wlu"]
 [ext_resource type="Texture2D" uid="uid://bnn8jl0srs5k5" path="res://assets/tilemaps/free_tiles.png" id="1_p8h2d"]
 [ext_resource type="PackedScene" uid="uid://ck2i6tgtn6mhj" path="res://scenes/ui/hud.tscn" id="2_2mhyq"]
-[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="2_pause"]
 [ext_resource type="PackedScene" uid="uid://dhkyobphalxs6" path="res://scenes/player/player.tscn" id="2_21vdc"]
 [ext_resource type="PackedScene" uid="uid://cxsf5siikdsid" path="res://scenes/world/parallax_background.tscn" id="2_brod4"]
 [ext_resource type="PackedScene" uid="uid://t3mi0fv2tfft" path="res://scenes/hazards/fall_death.tscn" id="3_78oux"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dle5i361hdp8e" path="res://scenes/platforms/moving_platform.tscn" id="12_gpohp"]
 [ext_resource type="PackedScene" uid="uid://bp7lurgrvb53e" path="res://scenes/hazards/moving_saw.tscn" id="13_sk85y"]
 [ext_resource type="PackedScene" uid="uid://bjm3mh004wl1v" path="res://scenes/platforms/breakable_platform.tscn" id="14_twr6k"]
+[ext_resource type="PackedScene" uid="uid://dxxcf42m3dy1g" path="res://scenes/ui/minimap.tscn" id="15_minimap"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4y73"]
 texture = ExtResource("1_p8h2d")
@@ -624,11 +624,11 @@ respawn_fade_path = NodePath("UI/RespawnFade")
 
 [node name="HUD" parent="UI" unique_id=1625729993 instance=ExtResource("2_2mhyq")]
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("2_pause")]
-
 [node name="RespawnFade" parent="UI" unique_id=1441649983 instance=ExtResource("3_jxp0u")]
 visible = false
 fade_alpha = 1.0
+
+[node name="Minimap" parent="UI" unique_id=1757064221 instance=ExtResource("15_minimap")]
 
 [node name="Visuals" type="Node" parent="." unique_id=1002086315]
 
@@ -719,5 +719,10 @@ position = Vector2(59, 672)
 
 [node name="MovingSaw" parent="Hazards" unique_id=463323808 instance=ExtResource("13_sk85y")]
 position = Vector2(147, 574)
+
+[node name="MinimapCamera" type="Camera2D" parent="." unique_id=1905123390]
+position = Vector2(480, 560)
+enabled = false
+zoom = Vector2(0.18, 0.18)
 
 [editable path="Visuals/ParallaxBackground"]

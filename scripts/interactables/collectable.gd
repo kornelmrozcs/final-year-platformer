@@ -1,6 +1,4 @@
 extends Area2D
-## Pickup required before the portal can open.
-## LevelController finds these in the level tree.
 class_name Collectable
 
 signal collected(collectable: Collectable)
@@ -53,6 +51,11 @@ func _collect() -> void:
 	audio_player.pitch_scale = rng.randf_range(min_pitch_scale, max_pitch_scale)
 	audio_player.play()
 
-	# wait for the sound to finish before deleting the pickup
-	await audio_player.finished
-	queue_free()
+
+func reset_for_respawn() -> void:
+	if not is_collected:
+		return
+
+	is_collected = false
+	animated_sprite.visible = true
+	collision_shape.set_deferred("disabled", false)
