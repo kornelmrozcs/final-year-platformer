@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dcn8m0bva71ul"]
 
-[ext_resource type="Script" path="res://scripts/ui/options_menu.gd" id="1_xinsc"]
+[ext_resource type="Script" uid="uid://d0ou87jex83ew" path="res://scripts/ui/options_menu.gd" id="1_xinsc"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" unique_id=963985702]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xinsc")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1507364304]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.03, 0.03, 0.04, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1765500329]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,37 +28,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=203145026]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=685196815]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "OPTIONS"
 horizontal_alignment = 1
 
-[node name="DifficultyLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1816814759]
 layout_mode = 2
 text = "Difficulty: Medium"
 horizontal_alignment = 1
 
-[node name="EasyButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="EasyButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1147832627]
 custom_minimum_size = Vector2(220, 34)
 layout_mode = 2
 text = "Easy"
 
-[node name="MediumButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="MediumButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1374133810]
 custom_minimum_size = Vector2(220, 34)
 layout_mode = 2
 text = "Medium"
 
-[node name="HardButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="HardButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2135984205]
 custom_minimum_size = Vector2(220, 34)
 layout_mode = 2
 text = "Hard"
 
-[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=573771505]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+text = "Hover over a difficulty to see what changes."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1033887276]
 custom_minimum_size = Vector2(220, 34)
 layout_mode = 2
 text = "Back"
