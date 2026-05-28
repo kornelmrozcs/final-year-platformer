@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dyusupvrutyf" path="res://scripts/player/states/wall_slide_state.gd" id="7_qek5x"]
 [ext_resource type="Script" uid="uid://d1u3w1yv5btqo" path="res://scripts/player/states/respawn_state.gd" id="8_5gtgg"]
 [ext_resource type="Script" uid="uid://dffa5c3fig34d" path="res://scripts/player/player_animation_controller.gd" id="9_h17s1"]
+[ext_resource type="Texture2D" uid="uid://bi00p4bhxjoyn" path="res://assets/sprites/fx/run_dust_particle.png" id="10_dust"]
 
 [sub_resource type="Animation" id="Animation_fm80t"]
 resource_name = "Fall"
@@ -165,6 +166,23 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_8afob")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="RunDust" type="CPUParticles2D" parent="." unique_id=1638481677]
+z_index = -1
+position = Vector2(0, 2)
+emitting = false
+amount = 24
+texture = ExtResource("10_dust")
+lifetime = 0.8
+lifetime_randomness = 0.1
+direction = Vector2(0, -1)
+spread = 80.0
+gravity = Vector2(0, -5)
+initial_velocity_min = 8.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.05
+scale_amount_max = 0.65
+color = Color(0.72, 0.82, 0.9, 0.55)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=434085958]
 offset = Vector2(0, -20)

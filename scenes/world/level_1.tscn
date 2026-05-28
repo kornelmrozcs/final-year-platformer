@@ -24,6 +24,7 @@ layer_0/tile_data = PackedInt32Array(2818054, 1310721, 3, 2818055, 1310721, 3, 2
 [node name="Player" parent="." index="3" unique_id=390292942]
 position = Vector2(-16, 700)
 respawn_position = Vector2(0, 700)
+run_dust_min_speed = 5.0
 
 [node name="Water" parent="." index="5" unique_id=45972592]
 water_height = 152.0

@@ -77,9 +77,13 @@ signal respawn_position_reached
 ## stops hazard tiles printing every frame
 @export var debug_death_message_cooldown: float = 0.25
 
+## speed needed before running dust starts
+@export var run_dust_min_speed: float = 20.0
+
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_controller: PlayerAnimationController = $PlayerAnimation
+@onready var run_dust: CPUParticles2D = get_node_or_null("RunDust") as CPUParticles2D
 
 var direction: float = 0.0
 
@@ -119,6 +123,7 @@ func _physics_process(delta: float) -> void:
 
 	state_machine.physics_update(delta)
 	move_and_slide()
+	_update_run_dust()
 	_check_hazard_collisions()
 
 
@@ -358,6 +363,23 @@ func _check_hazard_collisions() -> void:
 			request_respawn("hazard collision: " + str(collider.name))
 			return
 
+
+func _update_run_dust() -> void:
+	if run_dust == null:
+		return
+
+	var should_emit: bool = is_on_floor() and not is_respawning and absf(velocity.x) > run_dust_min_speed
+
+	_set_run_dust(should_emit)
+
+
+func _set_run_dust(should_emit: bool) -> void:
+	if run_dust == null:
+		return
+
+	run_dust.emitting = should_emit
+
+
 ## Starts death/respawn unless debug death mode is blocking it.
 func request_respawn(death_reason: String = "death", force_respawn: bool = false) -> void:
 	if is_respawning:
@@ -382,6 +404,7 @@ func start_respawn() -> void:
 	respawn_started.emit()
 
 	_reset_movement_state()
+	_set_run_dust(false)
 
 	# hide player during respawn
 	visible = false
@@ -407,4 +430,3 @@ func _reset_movement_state() -> void:
 	coyote_timer = 0.0
 
 	_clear_wall_state()
-
