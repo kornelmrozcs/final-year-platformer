@@ -76,6 +76,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uble"]
 radius = 17.0
 
+[sub_resource type="Gradient" id="Gradient_u7t0c"]
+offsets = PackedFloat32Array(0, 0.7372449)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5uble"]
+gradient = SubResource("Gradient_u7t0c")
+fill = 1
+fill_from = Vector2(0.52136755, 0.48290598)
+
 [node name="MovingSaw" type="Area2D" unique_id=463323808]
 script = ExtResource("1_5uble")
 animation_speed = 4.0
@@ -84,7 +93,7 @@ animation_speed = 4.0
 sprite_frames = SubResource("SpriteFrames_i2ekv")
 animation = &"spin"
 autoplay = "spin"
-frame_progress = 0.68419945
+frame_progress = 0.7463732
 speed_scale = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=542107158]
@@ -93,3 +102,7 @@ shape = SubResource("CircleShape2D_5uble")
 [node name="LinearMover" type="Node" parent="." unique_id=1974382556]
 script = ExtResource("1_6xq15")
 metadata/_custom_type_script = "uid://0d3ua6uqm7qh"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1963677005]
+color = Color(0.6039216, 0.44705883, 0.68235296, 1)
+texture = SubResource("GradientTexture2D_5uble")

@@ -12,6 +12,7 @@ signal collected(collectable: Collectable)
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var point_light: PointLight2D = get_node_or_null("PointLight2D") as PointLight2D
 
 var is_collected: bool = false
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -46,6 +47,7 @@ func _collect() -> void:
 
 	# hide the visual once picked up
 	animated_sprite.visible = false
+	_set_light_visible(false)
 
 	# slightly random pitch makes repeated pickups sound less identical
 	audio_player.pitch_scale = rng.randf_range(min_pitch_scale, max_pitch_scale)
@@ -58,4 +60,12 @@ func reset_for_respawn() -> void:
 
 	is_collected = false
 	animated_sprite.visible = true
+	_set_light_visible(true)
 	collision_shape.set_deferred("disabled", false)
+
+
+func _set_light_visible(is_visible: bool) -> void:
+	if point_light == null:
+		return
+
+	point_light.visible = is_visible
