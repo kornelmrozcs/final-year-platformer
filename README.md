@@ -19,6 +19,7 @@ Main Menu -> Level 1 -> Level 2 -> Level 3 -> Results Screen
 ## Current Features
 
 - simple main menu
+- options menu with Easy, Medium and Hard difficulty
 - pause menu with resume and quit
 - three playable levels
 - responsive player controller
@@ -34,19 +35,47 @@ Main Menu -> Level 1 -> Level 2 -> Level 3 -> Results Screen
 - portal progression between levels
 - HUD with collectable count, death counter, and timer
 - final results screen showing run time and deaths
+- Easy mode minimap/radar showing the player, collectables and portal
+- Medium mode as the standard/classic version of the game
+- Hard mode where collectables reset after death
 - moving platforms
 - breakable platforms that reset after respawn
 - parallax background
+- tutorial text prompts in level 1
 - basic player animations: idle, run, jump, fall, and wall slide
-- simple sound and feedback for some interactions
+- run dust particles for movement feedback
+- jump sound with small random pitch variation
+- collectable sound with small random pitch variation
+- looping background music during gameplay
+- simple lighting polish with directional light and point lights
+- GUT tests for some core systems such as timer, death counter, difficulty and collectable reset
 
 ## Controls
 
 ```text
-Move left - A/Left Arrow
-Move right - D/Right Arrow
-Jump - Space
-Pause - Esc
+Move left  - A / Left Arrow
+Move right - D / Right Arrow
+Jump       - Space
+Pause      - Esc
+```
+
+## Difficulty Modes
+
+```text
+Easy
+- shows a minimap/radar in the top right
+- minimap shows player position, collectables and portal
+- collectables stay collected after death
+
+Medium
+- standard version of the prototype
+- no minimap
+- collectables stay collected after death
+
+Hard
+- no minimap
+- collectables reset after death
+- mistakes are more punishing
 ```
 
 ## How to Play
@@ -60,6 +89,7 @@ Hazards kill the player on contact and send the player back to the level spawn p
 ## How to Run the Build
 
 Build is for Windows.
+
 Keep the generated build files in the same folder:
 
 ```text
@@ -97,6 +127,7 @@ assets/          sprites, audio and imported game assets
 docs/            project notes, testing notes and media
 scenes/          Godot scenes for levels, UI, player, hazards and objects
 scripts/         GDScript files for gameplay, UI and systems
+test/            GUT automated tests
 project.godot    main Godot project file
 ```
 
@@ -110,6 +141,23 @@ project.godot    main Godot project file
 - Canva
 - Affinity
 
+## Testing
+
+The prototype was tested using a mixture of manual testing, black box playtesting, regression testing and some automated GUT tests.
+
+The automated tests focus on systems where the expected result is clear, such as:
+
+- timer reset and timer running
+- death counter increasing
+- large death count values
+- difficulty mode helpers
+- collectable pickup and reset behaviour
+- basic level structure checks
+
+Manual testing and playtesting were used for movement feel, difficulty, hazards, portal logic, pause, audio, minimap, and full game flow.
+
+During playtesting, five people tried the current prototype and none of them managed to complete the full game flow except me. This showed that the core game loop works, but the current difficulty is still too high for most new players. It also showed that the tutorial and difficulty curve need more work in future versions.
+
 ## Known Limitations
 
 This is a prototype, so the focus is on the core platforming loop rather than full game polish.
@@ -119,12 +167,20 @@ Current limitations:
 - keyboard controls only
 - no save system
 - no level select system
-- no full settings/options menu
+- options menu is limited to difficulty only
 - visual style still uses some prototype and placeholder assets
-- difficulty need more balancing after wider playtesting
+- some sprites/visuals were generated or inspired using AI tools and then edited or adapted for this academic prototype
+- the project is not intended for commercial release
+- future development should replace all temporary/prototype visuals with fully original handmade assets
+- difficulty needs more balancing after wider playtesting
+- the three levels feel more like examples from different stages of a bigger game rather than one smooth difficulty curve
+- tutorial text helps the current prototype, but future versions should teach mechanics more naturally through level design
 - audio and visual feedback are simple and not final quality
 
 ## Credits / Assets
 
-This project uses a mixture of self-made, edited, and free/placeholder assets for prototyping.
+This project uses a mixture of self-made, edited, free/placeholder and AI-assisted prototype assets.
+
+Some visual assets were generated or inspired using AI tools and then edited or adapted for use in the prototype. These assets are used only for a university project and not for commercial purposes. If the project was developed further, the visual style would need a full original art pass with all final sprites created or properly licensed.
+
 Asset use and design references are documented in the supporting project documentation.
