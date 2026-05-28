@@ -739,7 +739,7 @@ position = Vector2(59, 672)
 [node name="Hazards" type="Node" parent="." unique_id=1423184231]
 
 [node name="MovingSaw" parent="Hazards" unique_id=463323808 instance=ExtResource("13_sk85y")]
-position = Vector2(147, 574)
+position = Vector2(175, 682)
 
 [node name="Minimap" type="Node" parent="." unique_id=598935644]
 
