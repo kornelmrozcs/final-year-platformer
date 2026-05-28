@@ -24,8 +24,8 @@ position = Vector2(7.323883, 697.5054)
 position = Vector2(46, 672)
 water_width = 684.0
 water_height = 32.0
-surface_color = Color(1, 0.09803922, 0.16078432, 1)
-fill_color = Color(0.5137255, 0, 0.039215688, 0.7647059)
+surface_color = Color(0.63529414, 0.09803922, 0.16078432, 1)
+fill_color = Color(0.23529412, 0, 0.039215688, 1)
 
 [node name="Portal" parent="Interactables" parent_id_path=PackedInt32Array(679339684) index="0" unique_id=266919062]
 position = Vector2(896, 641)
@@ -111,9 +111,7 @@ zoom = Vector2(0.16, 0.16)
 position = Vector2(452, 396)
 view_size = Vector2(980, 640)
 
-[node name="TutorialText" parent="." index="10" unique_id=1361439009]
+[node name="TutorialText" parent="Tutorial" parent_id_path=PackedInt32Array(999213393) index="0" unique_id=1361439009]
 visible = false
-outline_size = 5
-font_size = 18
 
 [editable path="Visuals/ParallaxBackground"]

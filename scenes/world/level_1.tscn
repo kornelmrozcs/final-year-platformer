@@ -13,7 +13,6 @@ reset_run_on_start = true
 visible = false
 
 [node name="Layer05" parent="Visuals/ParallaxBackground" parent_id_path=PackedInt32Array(259016423) index="1" unique_id=786414950]
-autoscroll = Vector2(-2, 0)
 auto_scroll_speed = -2.0
 
 [node name="TileMap" parent="Geometry" parent_id_path=PackedInt32Array(325884410) index="0" unique_id=864935402]
