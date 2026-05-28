@@ -40,6 +40,7 @@ func _pause_game() -> void:
 	is_open = true
 	was_timer_running = GameManager.timer_running
 	GameManager.stop_run()
+	GameManager.pause_game_music()
 	visible = true
 	get_tree().paused = true
 	resume_button.grab_focus()
@@ -54,12 +55,15 @@ func _resume_game() -> void:
 	if was_timer_running:
 		GameManager.start_run()
 
+	GameManager.resume_game_music()
+
 
 func _on_resume_pressed() -> void:
 	_resume_game()
 
 
 func _on_quit_pressed() -> void:
+	GameManager.stop_game_music()
 	get_tree().paused = false
 	get_tree().quit()
 

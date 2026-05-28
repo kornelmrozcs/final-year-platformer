@@ -80,10 +80,17 @@ signal respawn_position_reached
 ## speed needed before running dust starts
 @export var run_dust_min_speed: float = 20.0
 
+## lowest random pitch for the jump sound
+@export var jump_sound_min_pitch: float = 0.92
+
+## highest random pitch for the jump sound
+@export var jump_sound_max_pitch: float = 1.08
+
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_controller: PlayerAnimationController = $PlayerAnimation
 @onready var run_dust: CPUParticles2D = get_node_or_null("RunDust") as CPUParticles2D
+@onready var jump_audio_player: AudioStreamPlayer2D = get_node_or_null("JumpAudioPlayer") as AudioStreamPlayer2D
 
 var direction: float = 0.0
 
@@ -105,7 +112,10 @@ var was_touching_jumpable_wall: bool = false
 var is_respawning: bool = false
 var debug_death_message_timer: float = 0.0
 
+var audio_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 func _ready() -> void:
+	audio_rng.randomize()
 	add_to_group("player")
 	state_machine.init(self)
 
@@ -146,12 +156,14 @@ func move_horizontal(delta: float) -> void:
 
 
 func jump() -> void:
+	_play_jump_sound()
 	velocity.y = jump_velocity
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
 
 
 func wall_jump() -> void:
+	_play_jump_sound()
 	velocity.y = jump_velocity
 	velocity.x = last_wall_normal.x * wall_jump_push
 
@@ -362,6 +374,14 @@ func _check_hazard_collisions() -> void:
 		if collider is Node and collider.is_in_group(hazard_group_name):
 			request_respawn("hazard collision: " + str(collider.name))
 			return
+
+
+func _play_jump_sound() -> void:
+	if jump_audio_player == null:
+		return
+
+	jump_audio_player.pitch_scale = audio_rng.randf_range(jump_sound_min_pitch, jump_sound_max_pitch)
+	jump_audio_player.play()
 
 
 func _update_run_dust() -> void:

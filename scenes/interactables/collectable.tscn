@@ -85,6 +85,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_a2uub"]
 radius = 4.0
 
+[sub_resource type="Gradient" id="Gradient_u7t0c"]
+offsets = PackedFloat32Array(0, 0.7372449)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_64lak"]
+gradient = SubResource("Gradient_u7t0c")
+fill = 1
+fill_from = Vector2(0.52136755, 0.48290598)
+
 [node name="Collectable" type="Area2D" unique_id=2097911153]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_u7t0c")
@@ -102,3 +111,8 @@ shape = SubResource("CircleShape2D_a2uub")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=293642857]
 stream = ExtResource("3_64lak")
 volume_db = -10.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=766161706]
+color = Color(0.27450982, 0.78431374, 1, 1)
+energy = 0.37
+texture = SubResource("GradientTexture2D_64lak")

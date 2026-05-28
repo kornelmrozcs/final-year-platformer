@@ -10,6 +10,7 @@ class_name MainMenu
 
 
 func _ready() -> void:
+	GameManager.stop_game_music()
 	start_button.grab_focus()
 
 	if not start_button.pressed.is_connected(_on_start_pressed):
@@ -25,6 +26,7 @@ func _ready() -> void:
 func _on_start_pressed() -> void:
 	# start fresh but keep selected difficulty
 	GameManager.reset_run()
+	GameManager.play_game_music()
 	get_tree().change_scene_to_file(first_level_path)
 
 

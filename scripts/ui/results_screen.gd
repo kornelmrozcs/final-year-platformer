@@ -14,6 +14,8 @@ class_name ResultsScreen
 
 func _ready() -> void:
 	GameManager.stop_run()
+	GameManager.stop_game_music()
+	GameManager.play_results_sound()
 
 	time_label.text = "Time: " + GameManager.get_formatted_time()
 	deaths_label.text = "Deaths: " + str(GameManager.death_count)
@@ -27,6 +29,7 @@ func _ready() -> void:
 
 func _on_restart_pressed() -> void:
 	GameManager.reset_run()
+	GameManager.play_game_music()
 	get_tree().change_scene_to_file(restart_scene_path)
 
 

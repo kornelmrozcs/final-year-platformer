@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://d1u3w1yv5btqo" path="res://scripts/player/states/respawn_state.gd" id="8_5gtgg"]
 [ext_resource type="Script" uid="uid://dffa5c3fig34d" path="res://scripts/player/player_animation_controller.gd" id="9_h17s1"]
 [ext_resource type="Texture2D" uid="uid://bi00p4bhxjoyn" path="res://assets/sprites/fx/run_dust_particle.png" id="10_dust"]
+[ext_resource type="AudioStream" uid="uid://c2ikorh2jwev7" path="res://assets/audio/action_jump.mp3" id="11_jump_audio"]
 
 [sub_resource type="Animation" id="Animation_fm80t"]
 resource_name = "Fall"
@@ -128,6 +129,8 @@ height = 8.0
 position = Vector2(0, -4)
 script = ExtResource("1_dovo2")
 wall_coyote_time = 0.5
+jump_sound_min_pitch = 0.8
+jump_sound_max_pitch = 1.2
 
 [node name="StateMachine" type="Node" parent="." unique_id=73533683]
 script = ExtResource("2_0owmy")
@@ -183,6 +186,10 @@ initial_velocity_max = 20.0
 scale_amount_min = 0.05
 scale_amount_max = 0.65
 color = Color(0.72, 0.82, 0.9, 0.55)
+
+[node name="JumpAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1415161718]
+stream = ExtResource("11_jump_audio")
+volume_db = -8.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=434085958]
 offset = Vector2(0, -20)
